@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { OFFER_ENDPOINTS } from "../pages/endpoints.js";
+import { OFFER_ENDPOINTS } from "../pages/endpoints";
 
 export function useGetOffer(){
     const [offer,setOffer]=useState()

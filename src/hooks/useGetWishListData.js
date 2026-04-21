@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { PRODUCT_ENDPOINTS, USER_ENDPOINTS } from "../pages/endpoints.js";
 import { useSelector,useDispatch } from "react-redux";
-import { removeMissingFromWishlist ,replaceEntireWishList} from "../redux/slices/wishListSlice";
+import { removeMissingFromWishlist ,replaceEntireWishList} from "../redux/slices/wishListSlice.js";
 import toast from "react-hot-toast";
 import store from "../redux/store";
 
