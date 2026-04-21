@@ -1,12 +1,12 @@
 import { useState, useEffect, useLayoutEffect } from "react";
-import { useGetAllFeedBack } from "../hooks/useGetAllFeedBack.js";
+import { useGetAllFeedBack } from "../hooks/useGetAllFeedBack";
 import { useDispatch, useSelector } from "react-redux";
-import { setCategoryState, setDetailOption, setLoginOption } from "../redux/slices/userSlice.js";
+import { setCategoryState, setDetailOption, setLoginOption } from "../redux/slices/userSlice";
 import { useRef } from "react";
-import { setHeaderHight, setSideBarLength } from "../redux/slices/layoutSlice.js";
+import { setHeaderHight, setSideBarLength } from "../redux/slices/layoutSlice";
 import toast from "react-hot-toast";
 import { useNavigate, Link } from "react-router-dom";
-import { setPets, setTypeFilter } from "../redux/slices/filterSlice.js";
+import { setPets, setTypeFilter } from "../redux/slices/filterSlice";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { HiHeart, HiOutlineMail } from "react-icons/hi";
 import { FaPhoneAlt, FaRegHeart, FaUser } from "react-icons/fa";
@@ -18,8 +18,8 @@ import { PawPrint, Tag, Package } from "lucide-react";
 import { RiArrowDropDownLine, RiArrowDropUpLine, RiTwitterXLine } from "react-icons/ri";
 import { FaWhatsapp, FaInstagram, FaFacebook } from "react-icons/fa";
 import axios from "axios";
-import { useIsDesktop } from "../hooks/useIsDesktop.js";
-import { USER_ENDPOINTS } from "./endpoints.js";
+import { useIsDesktop } from "../hooks/useIsDesktop";
+import { USER_ENDPOINTS } from "./endpoints";
 import { MdLocationOn } from "react-icons/md";
 
 

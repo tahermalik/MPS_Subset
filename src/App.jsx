@@ -1,14 +1,14 @@
 import { Routes, Route } from "react-router-dom";
-import LandingPage from "./pages/LandingPage.jsx";
-import useLenis from "./hooks/useLenis.js"
+import LandingPage from "./pages/LandingPage";
+import useLenis from "./hooks/useLenis"
 import { useEffect } from "react";
 import axios from "axios";
-import { USER_ENDPOINTS } from "./pages/endpoints.js";
-import Product from "./pages/Product.jsx";
-import WishListUI from "./pages/WishListUI.jsx";
-import OfferSection from "./pages/Offer.jsx";
-import SingleProductDisplay from "./pages/SingleProductDisplay.jsx";
-import Login from "./pages/Login.jsx";
+import { USER_ENDPOINTS } from "./pages/endpoints";
+import Product from "./pages/Product";
+import WishListUI from "./pages/WishListUI";
+import OfferSection from "./pages/Offer";
+import SingleProductDisplay from "./pages/SingleProductDisplay";
+import Login from "./pages/Login";
 
 function App() {
   useLenis();

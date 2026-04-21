@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { USER_ENDPOINTS } from "../pages/endpoints.js";
+import { USER_ENDPOINTS } from "../pages/endpoints";
 
 export function useGetAllFeedBack(feedBackRefresh){
     const [feedBackData,setFeedBackData]=useState([])

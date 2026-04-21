@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { PRODUCT_ENDPOINTS } from "../pages/endpoints.js"
+import { PRODUCT_ENDPOINTS } from "../pages/endpoints"
 import { shallowEqual, useSelector } from "react-redux"
 import { useMemo } from "react"
 

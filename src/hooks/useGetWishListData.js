@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { PRODUCT_ENDPOINTS, USER_ENDPOINTS } from "../pages/endpoints.js";
+import { PRODUCT_ENDPOINTS, USER_ENDPOINTS } from "../pages/endpoints";
 import { useSelector,useDispatch } from "react-redux";
-import { removeMissingFromWishlist ,replaceEntireWishList} from "../redux/slices/wishListSlice.js";
+import { removeMissingFromWishlist ,replaceEntireWishList} from "../redux/slices/wishListSlice";
 import toast from "react-hot-toast";
 import store from "../redux/store";
 
