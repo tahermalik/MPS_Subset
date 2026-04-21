@@ -3,7 +3,7 @@ import LandingPage from "./Pages/LandingPage.jsx";
 import useLenis from "./hooks/useLenis.js"
 import { useEffect } from "react";
 import axios from "axios";
-import { USER_ENDPOINTS } from "./pages/endpoints.js";
+import { USER_ENDPOINTS } from "./pages/endpoints";
 import Product from "./Pages/Product.jsx";
 import WishListUI from "./Pages/WishListUI.jsx";
 import OfferSection from "./Pages/Offer.jsx";

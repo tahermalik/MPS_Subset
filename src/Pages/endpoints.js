@@ -6,7 +6,7 @@
 // export const ORDER_ENDPOINTS="http://localhost:3000/order"
 // export const BASE_URL="http://localhost:3000"
 
-export const COUPON_ENDPOINT="https://malikpetshop.onrender.com/coupon"
+export const COUPON_ENDPOINTS="https://malikpetshop.onrender.com/coupon"
 export const CART_ENDPOINTS="https://malikpetshop.onrender.com/cart"
 export const PRODUCT_ENDPOINTS="https://malikpetshop.onrender.com/product"
 export const USER_ENDPOINTS="https://malikpetshop.onrender.com/user"
