@@ -1,12 +1,12 @@
 import { useState, useEffect, useLayoutEffect } from "react";
-import { useGetAllFeedBack } from "../hooks/useGetAllFeedBack";
+import { useGetAllFeedBack } from "../hooks/useGetAllFeedBack.js";
 import { useDispatch, useSelector } from "react-redux";
-import { setCategoryState, setDetailOption, setLoginOption } from "../redux/slices/userSlice";
+import { setCategoryState, setDetailOption, setLoginOption } from "../redux/slices/userSlice.js";
 import { useRef } from "react";
-import { setHeaderHight, setSideBarLength } from "../redux/slices/layoutSlice";
+import { setHeaderHight, setSideBarLength } from "../redux/slices/layoutSlice.js";
 import toast from "react-hot-toast";
 import { useNavigate, Link } from "react-router-dom";
-import { setPets, setTypeFilter } from "../redux/slices/filterSlice";
+import { setPets, setTypeFilter } from "../redux/slices/filterSlice.js";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { HiHeart, HiOutlineMail } from "react-icons/hi";
 import { FaPhoneAlt, FaRegHeart, FaUser } from "react-icons/fa";

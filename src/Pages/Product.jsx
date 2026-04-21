@@ -1,24 +1,24 @@
-import { Header, Footer } from "./LandingPage"
+import { Header, Footer } from "./LandingPage.jsx"
 import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { setBrands, setBreed, setDiet, setFlavor, setPets } from "../redux/slices/filterSlice"
+import { setBrands, setBreed, setDiet, setFlavor, setPets } from "../redux/slices/filterSlice.js"
 import { MdArrowDropDown, MdArrowDropUp, MdOutlineDeleteOutline } from "react-icons/md"
 import { Range } from "react-range";
-import { useGetAllProduct } from "../hooks/useGetAllProducts"
+import { useGetAllProduct } from "../hooks/useGetAllProducts.js"
 import axios from "axios"
-import { BASE_URL, CART_ENDPOINTS, PRODUCT_ENDPOINTS, USER_ENDPOINTS } from "./endpoints"
+import { BASE_URL, CART_ENDPOINTS, PRODUCT_ENDPOINTS, USER_ENDPOINTS } from "./endpoints.js"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useMemo } from "react"
 import { IoIosHeart } from "react-icons/io";
-import { setFavourite } from "../redux/slices/wishListSlice"
-import { setImageCounter } from "../redux/slices/activeSlice"
+import { setFavourite } from "../redux/slices/wishListSlice.js"
+import { setImageCounter } from "../redux/slices/activeSlice.js"
 import toast from "react-hot-toast"
 import { FiFilter } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
 import { FaArrowLeftLong } from "react-icons/fa6";
-import { SideBar, SubMenu } from "./LandingPage"
-import { setCompleteProductInfo } from "../redux/slices/productSlice"
-import { Breadcrumbs } from "./Breadcrumbs"
+import { SideBar, SubMenu } from "./LandingPage.jsx"
+import { setCompleteProductInfo } from "../redux/slices/productSlice.js"
+import { Breadcrumbs } from "./Breadcrumbs.jsx"
 
 function CheckBoxes(props) {
     const dispatch = useDispatch();
