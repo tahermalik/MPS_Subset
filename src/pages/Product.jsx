@@ -749,7 +749,7 @@ function DisplayProducts(props) {
         // console.log(productData[0]["image"])
 
         return (
-            <>
+            <div className="flex items-start justify-starts gap-4">
                 {productData.map((product) => {
                     return (
                         <div onClick={() => productClicked(product)} className="h-fit w-[90%] sm:w-[250px] gap-2">
@@ -757,7 +757,7 @@ function DisplayProducts(props) {
                         </div>
                     )
                 })}
-            </>
+            </div>
         )
     }
 }
