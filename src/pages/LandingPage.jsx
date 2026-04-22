@@ -19,8 +19,9 @@ import { RiArrowDropDownLine, RiArrowDropUpLine, RiTwitterXLine } from "react-ic
 import { FaWhatsapp, FaInstagram, FaFacebook } from "react-icons/fa";
 import axios from "axios";
 import { useIsDesktop } from "../hooks/useIsDesktop";
-import { USER_ENDPOINTS } from "./endpoints";
+import { FRONTEND_DOMAIN, USER_ENDPOINTS } from "./endpoints";
 import { MdLocationOn } from "react-icons/md";
+import { Helmet } from "react-helmet-async";
 
 
 function Brands(props) {
@@ -638,8 +639,8 @@ export function Header({ open, setOpen, approachedFrom }) {
     const showDetailOption = useSelector((state) => state?.user?.detailOption)  // initially false
     const [data, setData] = useState("cat")
 
-    const [categoriesEntry,setCategoriesEntry]=useState(false)
-    const [categorieData,setCategoryData]=useState(false)
+    const [categoriesEntry, setCategoriesEntry] = useState(false)
+    const [categorieData, setCategoryData] = useState(false)
 
     const navigate = useNavigate()
     let clicked = "user"
@@ -651,7 +652,7 @@ export function Header({ open, setOpen, approachedFrom }) {
         const firstChildDiv = parentDiv.querySelector("div:first-child")
         setData(firstChildDiv.textContent.toLowerCase())
         dispatch(setPets(firstChildDiv.textContent.toLowerCase()))
-        if (!show){
+        if (!show) {
             dispatch(setCategoryState())
             setCategoriesEntry(!categoriesEntry)
         }
@@ -678,20 +679,20 @@ export function Header({ open, setOpen, approachedFrom }) {
 
 
     // to handle opening and closing of the category data
-    useEffect(()=>{
+    useEffect(() => {
         // console.log("Leave is invoked",categoriesEntry,categorieData)
-        if(!categoriesEntry && !categorieData && show) dispatch(setCategoryState())
-    },[categoriesEntry,categorieData])
-    
+        if (!categoriesEntry && !categorieData && show) dispatch(setCategoryState())
+    }, [categoriesEntry, categorieData])
+
 
     const dropdownRef = useRef(null)
     const loginRef = useRef(null)
     const contactRef = useRef(null)
-    const contactHeightRef=useRef(null)
-    const [contactHeight,setContactHeight]=useState(0);
+    const contactHeightRef = useRef(null)
+    const [contactHeight, setContactHeight] = useState(0);
 
-    const loginHeightRef=useRef(null)
-    const [loginHeight,setLoginHeight]=useState(0);
+    const loginHeightRef = useRef(null)
+    const [loginHeight, setLoginHeight] = useState(0);
 
     // adjusting the contact display box height
     useEffect(() => {
@@ -848,14 +849,14 @@ export function Header({ open, setOpen, approachedFrom }) {
                         <div className="flex flex-row gap-1 w-full justify-evenly items-center">
 
                             {/* Contact */}
-                            <div ref={contactRef} className="cursor-pointer hover:rounded-2xl relative flex flex-row items-center w-fit transition-all duration-200 hover:bg-[#A8DAFF]/40 p-2 rounded-xl" onMouseLeave={(e)=>dispatch(setDetailOption())}>
+                            <div ref={contactRef} className="cursor-pointer hover:rounded-2xl relative flex flex-row items-center w-fit transition-all duration-200 hover:bg-[#A8DAFF]/40 p-2 rounded-xl" onMouseLeave={(e) => dispatch(setDetailOption())}>
                                 <div ref={contactHeightRef} className="flex flex-row justify-center items-center" onMouseEnter={(e) => detailsHandler(e)}>
                                     <div className="" data-details="details"><IoIosContact color="#4AA9F7" className="text-3xl md:text-4xl" /></div>
                                     {(!showDetailOption) && <div><RiArrowDropDownLine size={20} /></div>}
                                     {showDetailOption && <div><RiArrowDropUpLine size={20} /></div>}
                                 </div>
                                 {showDetailOption &&
-                                    <div className="h-auto backdrop-blur-xl absolute flex flex-col gap-1 bg-white/90 p-2 shadow-lg rounded-2xl left-0" style={{top:contactHeight}}>
+                                    <div className="h-auto backdrop-blur-xl absolute flex flex-col gap-1 bg-white/90 p-2 shadow-lg rounded-2xl left-0" style={{ top: contactHeight }}>
                                         <div className="flex flex-row items-center gap-2 pl-1">
                                             <div><HiOutlineMail color="#054873" /></div>
                                             <div className="text-[#054873] text-sm"><span>malikpetshop2021@gmail.com</span></div>
@@ -870,14 +871,14 @@ export function Header({ open, setOpen, approachedFrom }) {
                             </div>
 
                             {/* Login */}
-                            <div ref={loginRef} className="cursor-pointer hover:rounded-2xl flex flex-row justify-center items-center transition-all duration-200 hover:bg-[#A8DAFF]/40 p-2 rounded-xl relative" onMouseLeave={(e)=>dispatch(setLoginOption())}>
+                            <div ref={loginRef} className="cursor-pointer hover:rounded-2xl flex flex-row justify-center items-center transition-all duration-200 hover:bg-[#A8DAFF]/40 p-2 rounded-xl relative" onMouseLeave={(e) => dispatch(setLoginOption())}>
                                 <div ref={loginHeightRef} className="flex flex-row items-center justify-center" onMouseEnter={(e) => detailsHandler(e)} >
                                     <div className="flex flex-row justify-center items-center" data-details="user"><FaUser color="#4AA9F7" className="text-2xl" /></div>
                                     {(!showLoginOption || clicked !== "user") && <div><RiArrowDropDownLine size={20} /></div>}
                                     {showLoginOption && clicked === "user" && <div><RiArrowDropUpLine size={20} /></div>}
                                 </div>
                                 {showLoginOption &&
-                                    <div className="w-fit h-auto backdrop-blur-xl absolute flex flex-col gap-1 bg-white/90 p-3 shadow-lg rounded-2xl left-0 z-40" style={{top:loginHeight}}>
+                                    <div className="w-fit h-auto backdrop-blur-xl absolute flex flex-col gap-1 bg-white/90 p-3 shadow-lg rounded-2xl left-0 z-40" style={{ top: loginHeight }}>
                                         <Link to="/Login" state={{ user: "user" }}><div className="hover:bg-[#DFF3FF] hover:rounded-xl px-3 py-1 cursor-pointer text-[#054873]">User Login</div></Link>
                                         <Link to="/Login" state={{ user: "admin" }}><div className="hover:bg-[#DFF3FF] hover:rounded-xl px-3 py-1 cursor-pointer text-[#054873]">Admin Login</div></Link>
 
@@ -901,7 +902,7 @@ export function Header({ open, setOpen, approachedFrom }) {
                 </div>
 
                 {/* Lower Header */}
-                <div className="lower_header hidden sm:flex flex-row justify-evenly items-center gap-3 w-full h-[40%] bg-gradient-to-r from-[#7DC6FF] to-[#4AA9F7] text-white shadow-inner" onMouseEnter={(e)=>setCategoriesEntry(true)} onMouseLeave={(e)=>{e.stopPropagation(); setCategoriesEntry(false)}}>
+                <div className="lower_header hidden sm:flex flex-row justify-evenly items-center gap-3 w-full h-[40%] bg-gradient-to-r from-[#7DC6FF] to-[#4AA9F7] text-white shadow-inner" onMouseEnter={(e) => setCategoriesEntry(true)} onMouseLeave={(e) => { e.stopPropagation(); setCategoriesEntry(false) }}>
                     <div className="flex flex-row justify-evenly items-center w-full">
                         <div onMouseEnter={categoriesHandler} className="xs:text-xs sm:text-sm md:text-lg flex flex-row justify-center items-center hover:underline hover:decoration-white cursor-pointer px-4 py-1 rounded-xl transition-all duration-200">
                             <div className="text-black">Cat</div>
@@ -933,7 +934,7 @@ export function Header({ open, setOpen, approachedFrom }) {
 
 
 
-                {show && <div onMouseLeave={(e)=>{e.stopPropagation(); setCategoryData(false);}} onMouseEnter={(e)=>setCategoryData(true)}
+                {show && <div onMouseLeave={(e) => { e.stopPropagation(); setCategoryData(false); }} onMouseEnter={(e) => setCategoryData(true)}
                     ref={dropdownRef}
                     className={`scoll-lower-header absolute left-0 h-auto w-full bg-white/95 shadow-xl backdrop-blur-lg flex flex-row flex-wrap p-3
                transition-all duration-300 ease-out transform origin-top scale-y-100`}
@@ -1244,7 +1245,7 @@ function MapEmbed() {
     const shopLat = "19.15572555683343";
     const shopLng = "72.83593154618605";
 
-    const destination ="Malik Pet Shop & Cage House, Shop No.11, Veena apartment, New Link Rd, near Oshiwara depot, Sejal Park, Best Nagar, Goregaon West, Mumbai, Maharashtra 400104"
+    const destination = "Malik Pet Shop & Cage House, Shop No.11, Veena apartment, New Link Rd, near Oshiwara depot, Sejal Park, Best Nagar, Goregaon West, Mumbai, Maharashtra 400104"
 
     function openGoogleMaps() {
         if (navigator.geolocation) {
@@ -1401,25 +1402,65 @@ export default function LandingPage() {
 
     console.log("feedback", feedBack)
 
+    const MetaTags = () => (
+        <Helmet>
+            <title>Malik Pet Shop | Pet Food, Accessories & Supplies in Goregaon West, Mumbai</title>
+            <meta name="description" content="Malik Pet Shop in Goregaon West, Mumbai offers pet food, treats, grooming products, toys, cages, and accessories for dogs, cats, birds, rabbits, hamsters, and turtles." />
+            <meta name="keywords" content="Malik Pet Shop, pet shop in Goregaon West, pet shop Mumbai, dog food Mumbai, cat food Mumbai, pet accessories Mumbai, pet supplies Goregaon, pet grooming products, bird food, rabbit food, hamster cage" />
+            <meta name="author" content="Malik Pet Shop" />
+            <meta name="robots" content="index, follow" />
+            <meta name="language" content="English" />
+            <meta name="theme-color" content="#0D47A1" />
+            <link rel="canonical" href={`${FRONTEND_DOMAIN}/`} />
+            <meta property="og:type" content="website" />
+            <meta property="og:title" content="Malik Pet Shop | Pet Food, Accessories & Supplies in Mumbai" />
+            <meta property="og:description" content="Shop pet food, treats, toys, grooming essentials, cages, and accessories for all your pets at Malik Pet Shop, Goregaon West, Mumbai." />
+            <meta property="og:url" content={`${FRONTEND_DOMAIN}/`} />
+            <meta property="og:image" content={`${FRONTEND_DOMAIN}/photo_21.jpg`}  />
+            <meta property="og:site_name" content="Malik Pet Shop" />
+            <meta property="og:locale" content="en_IN" />
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:title" content="Malik Pet Shop | Pet Supplies in Goregaon West, Mumbai" />
+            <meta name="twitter:description" content="Pet food, accessories, toys, grooming products, and more for dogs, cats, birds, rabbits, hamsters, and turtles." />
+            <meta name="twitter:image" content={`${FRONTEND_DOMAIN}/photo_21.jpg`}  />
+        </Helmet>
+    )
+
     if (!feedBack) {
         return (
-            <div>Loading...</div>
+            <>
+                <MetaTags/>
+                <div className="root-conatiner relative ">
+                    <Header open={open} setOpen={setOpen} approachedFrom={"Home"} />
+                    <SideBar open={open} setOpen={setOpen} setAnimal={setAnimal} />
+                    <SubMenu animal={animal} />
+
+                    <AutoBrandSlider />
+                    <Owner />
+
+                    <div>Feedback Loading...</div>
+                    <Footer />
+                </div>
+            </>
         )
     }
 
 
     return (
-        <div className="root-conatiner relative ">
-            <Header open={open} setOpen={setOpen} approachedFrom={"Home"} />
-            <SideBar open={open} setOpen={setOpen} setAnimal={setAnimal} />
-            <SubMenu animal={animal} />
+        <>
+            <MetaTags/>
+            <div className="root-conatiner relative ">
+                <Header open={open} setOpen={setOpen} approachedFrom={"Home"} />
+                <SideBar open={open} setOpen={setOpen} setAnimal={setAnimal} />
+                <SubMenu animal={animal} />
 
-            <AutoBrandSlider />
-            <Owner />
+                <AutoBrandSlider />
+                <Owner />
 
-            <ShowFeedBack feedBack={feedBack} />
-            <FeedBack refresh={feedBackRefresh} setRefresh={setFeedBackRefresh} />
-            <Footer />
-        </div>
+                <ShowFeedBack feedBack={feedBack} />
+                <FeedBack refresh={feedBackRefresh} setRefresh={setFeedBackRefresh} />
+                <Footer />
+            </div>
+        </>
     )
 }

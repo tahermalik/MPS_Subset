@@ -13,3 +13,5 @@ export const USER_ENDPOINTS="https://malikpetshop.onrender.com/user"
 export const OFFER_ENDPOINTS="https://malikpetshop.onrender.com/offer"
 export const ORDER_ENDPOINTS="https://malikpetshop.onrender.com/order"
 export const BASE_URL="https://malikpetshop.onrender.com"
+
+export const FRONTEND_DOMAIN="https://malik-pet-shop-main.vercel.app"

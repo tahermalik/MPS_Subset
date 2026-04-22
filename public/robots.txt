@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Allow: /Product_Page
+Disallow: /wishlist
+Disallow: /login
+
+Sitemap: https://malik-pet-shop-main.vercel.app/sitemap.xml
