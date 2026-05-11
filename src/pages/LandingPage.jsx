@@ -972,13 +972,10 @@ function FeedBack(props) {
     const user = useSelector((state) => state?.user?.userData);
 
     async function submitFeedBack() {
-        if (!user) {
-            toast.error("User needs to login first")
-        }
-        else if (text.trim().length === 0) toast.error("Feedback can't be empty")
+        if (text.trim().length === 0) toast.error("Feedback can't be empty")
         else {
             const res = await axios.post(
-                `${USER_ENDPOINTS}/createFeedBack/${user?._id}`,
+                `${USER_ENDPOINTS}/createFeedBack`,
                 { message: text, rating: rating },
                 { withCredentials: true }
             );

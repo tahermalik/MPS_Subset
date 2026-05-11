@@ -17,6 +17,8 @@ node_modules
 dist
 build
 
+generate_seo.js
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
