@@ -19,6 +19,7 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import { SideBar, SubMenu } from "./LandingPage"
 import { setCompleteProductInfo } from "../redux/slices/productSlice"
 import { Breadcrumbs } from "./Breadcrumbs"
+import ScrollToTop from "./Utility.jsx"
 
 function CheckBoxes(props) {
     const dispatch = useDispatch();
@@ -450,7 +451,7 @@ function ProductCard(props) {
         const userWishListIds = userWishListData?.map((obj) => { return obj["productId"] })
         console.log("loading wishList", userWishListData)
         //// product is there present in the wishList
-        if (userWishListIds.includes(props?.productId)) {
+        if (userWishListIds?.includes(props?.productId)) {
 
             //// implementing this so that the user can add variation of prouct in the wishList
             const productVariationData = userWishListData.map((obj) => {

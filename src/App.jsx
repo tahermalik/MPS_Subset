@@ -9,6 +9,8 @@ import WishListUI from "./pages/WishListUI";
 import OfferSection from "./pages/Offer";
 import SingleProductDisplay from "./pages/SingleProductDisplay";
 import Login from "./pages/Login";
+import ScrollToTop from "./pages/Utility";
+import AIChatDrawer from "./pages/AIChatDrawer";
 
 function App() {
   useLenis();
@@ -27,11 +29,13 @@ function App() {
 
   return (
     <div className="h-auto w-screen bg-white font-serif">
+        <ScrollToTop/>
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/Product_Page" element={<Product />}></Route>
         <Route path="/Product_Page/SingleProductDisplay" element={<SingleProductDisplay />}></Route>
+        <Route path="/SingleProductDisplay" element={<SingleProductDisplay />}></Route>
 
         {/* All wishlist routes */}
         <Route path="/Wish_List" element={<WishListUI />}></Route>
@@ -44,6 +48,7 @@ function App() {
         <Route path="/Product_Page/SingleProductDisplay/Offer" element={<OfferSection />}></Route>
 
       </Routes>
+      <AIChatDrawer />
     </div>
   );
 }

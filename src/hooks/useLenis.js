@@ -1,6 +1,12 @@
 import { useEffect } from "react";
 import Lenis from "@studio-freight/lenis";
 
+let lenisInstance = null;
+
+export function getLenis() {
+  return lenisInstance;
+}
+
 export default function useLenis() {
   useEffect(() => {
     const lenis = new Lenis({
@@ -13,6 +19,8 @@ export default function useLenis() {
       touchMultiplier: 2,
       infinite: false,
     });
+
+    lenisInstance = lenis;
 
     function raf(time) {
       lenis.raf(time);

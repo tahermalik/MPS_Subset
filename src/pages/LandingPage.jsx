@@ -175,6 +175,112 @@ function AutoBrandSlider() {
     );
 }
 
+function HeroTagline() {
+    return (
+        <section className="w-full bg-[#F0F9FF] py-14 px-6 text-center">
+            <h1 className="text-3xl sm:text-5xl font-bold text-[#0D47A1] leading-tight">
+                Mumbai's Complete Online Pet Shop
+            </h1>
+            <p className="mt-4 text-[#1565C0] text-base sm:text-lg max-w-2xl mx-auto">
+                From premium dog food and cat treats to cages, toys, grooming kits, and clothing —
+                everything your pet needs, delivered to your door in Mumbai.
+            </p>
+            <Link to="/Product_Page">
+                <button className="mt-8 px-8 py-3 bg-[#0D47A1] text-white text-sm sm:text-base font-semibold rounded-full shadow-lg hover:bg-[#1565C0] transition-all duration-300">
+                    Shop Now →
+                </button>
+            </Link>
+        </section>
+    )
+}
+
+const pets = [
+    { label: "Dogs", emoji: "🐶", desc: "Food, toys, clothing, grooming & more", type: "dog" },
+    { label: "Cats", emoji: "🐱", desc: "Food, treats, litter, toys & accessories", type: "cat" },
+    { label: "Birds", emoji: "🐦", desc: "Food, cages, bowls & supplements", type: "bird" },
+    { label: "Small Pets", emoji: "🐹", desc: "Hamsters, rabbits, turtles & more", type: "small pets" },
+];
+
+function ShopByPet() {
+    const navigate=useNavigate()
+    return (
+        <section className="w-full bg-[#F0F9FF] py-12 px-6">
+            <h2 className="text-2xl sm:text-3xl font-bold text-center text-[#0D47A1] mb-8">
+                Shop by Pet
+            </h2>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                {pets.map((pet) => (
+                    <div onClick={()=>{navigate("/Product_Page", { state: { query: pet.label, data: "search" } })}} className="flex flex-col items-center gap-3 p-6 rounded-2xl bg-[#EFF8FF] border border-[#BFDBFE] hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer">
+                        <span className="text-5xl">{pet.emoji}</span>
+                        <h3 className="text-[#0D47A1] font-bold text-lg">{pet.label}</h3>
+                        <p className="text-[#1565C0] text-xs text-center">{pet.desc}</p>
+                    </div>
+
+                ))}
+            </div>
+        </section>
+    )
+}
+
+const offerings = [
+    { emoji: "🍖", title: "Pet Food", desc: "Dry food, wet food, puppy & kitten food, veterinary diets for dogs and cats." },
+    { emoji: "🎾", title: "Toys", desc: "Interactive, squeaky, rope, catnip and flush toys to keep your pets entertained." },
+    { emoji: "✂️", title: "Grooming", desc: "Shampoos, brushes, nail cutters, deodorants, towels and more for all pets." },
+    { emoji: "🏠", title: "Cages & Bedding", desc: "Comfortable cages, beds, blankets, cooling mats and cushions for your pets." },
+    { emoji: "👕", title: "Clothing", desc: "T-shirts, winter wear, occasion outfits and shoes for dogs and cats." },
+    { emoji: "🍬", title: "Treats & Supplements", desc: "Biscuits, meat treats, creamy treats and health supplements for all pets." },
+];
+
+function WhatWeOffer() {
+    return (
+        <section className="w-full bg-white py-12 px-6">
+            <h2 className="text-2xl sm:text-3xl font-bold text-center text-[#0D47A1] mb-2">
+                What We Offer
+            </h2>
+            <p className="text-center text-[#1565C0] text-sm sm:text-base mb-8 max-w-xl mx-auto">
+                A complete range of pet products for dogs, cats, birds, hamsters, rabbits and turtles.
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-5xl mx-auto">
+                {offerings.map((item) => (
+                    <div key={item.title} className="flex flex-col gap-2 p-5 bg-white rounded-2xl border border-[#BFDBFE] hover:shadow-md transition-all duration-300">
+                        <span className="text-4xl">{item.emoji}</span>
+                        <h3 className="text-[#0D47A1] font-bold text-base">{item.title}</h3>
+                        <p className="text-[#1565C0] text-xs leading-relaxed">{item.desc}</p>
+                    </div>
+                ))}
+            </div>
+        </section>
+    )
+}
+
+const reasons = [
+    { emoji: "🏆", title: "15+ Years of Experience", desc: "Trusted by Mumbai pet parents since 2009. We know pets inside out." },
+    { emoji: "📦", title: "100+ Products", desc: "Huge variety of food, toys, grooming, cages and accessories all in one place." },
+    { emoji: "🐾", title: "All Pets Welcome", desc: "Dogs, cats, birds, hamsters, rabbits, turtles — we care for every pet." },
+    { emoji: "📍", title: "Based in Mumbai", desc: "Walk in or shop online. Located in Goregaon West, serving all of Mumbai." },
+];
+
+function WhyChooseUs() {
+    return (
+        <section className="w-full bg-[#0D47A1] py-12 px-6">
+            <h2 className="text-2xl sm:text-3xl font-bold text-center text-white mb-2">
+                Why Shop With Us?
+            </h2>
+            <p className="text-center text-[#BBDEFB] text-sm sm:text-base mb-8 max-w-xl mx-auto">
+                Malik Pet Shop — Mumbai's most loved pet store for over 15 years.
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-5xl mx-auto">
+                {reasons.map((r) => (
+                    <div key={r.title} className="flex flex-col items-center text-center gap-3 p-6 bg-white/10 rounded-2xl border border-white/20 hover:bg-white/20 transition-all duration-300">
+                        <span className="text-4xl">{r.emoji}</span>
+                        <h3 className="text-white font-bold text-sm sm:text-base">{r.title}</h3>
+                        <p className="text-[#BBDEFB] text-xs leading-relaxed">{r.desc}</p>
+                    </div>
+                ))}
+            </div>
+        </section>
+    )
+}
 
 
 function Owner() {
@@ -657,6 +763,7 @@ export function Header({ open, setOpen, approachedFrom }) {
             setCategoriesEntry(!categoriesEntry)
         }
     }
+    
     function detailsHandler(e) {
         const parentDiv = e.currentTarget;
         const firstChildDiv = parentDiv?.querySelector("div:first-child")
@@ -1413,49 +1520,42 @@ export default function LandingPage() {
             <meta property="og:title" content="Malik Pet Shop | Pet Food, Accessories & Supplies in Mumbai" />
             <meta property="og:description" content="Shop pet food, treats, toys, grooming essentials, cages, and accessories for all your pets at Malik Pet Shop, Goregaon West, Mumbai." />
             <meta property="og:url" content={`${FRONTEND_DOMAIN}/`} />
-            <meta property="og:image" content={`${FRONTEND_DOMAIN}/photo_21.jpg`}  />
+            <meta property="og:image" content={`${FRONTEND_DOMAIN}/photo_21.jpg`} />
             <meta property="og:site_name" content="Malik Pet Shop" />
             <meta property="og:locale" content="en_IN" />
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:title" content="Malik Pet Shop | Pet Supplies in Goregaon West, Mumbai" />
             <meta name="twitter:description" content="Pet food, accessories, toys, grooming products, and more for dogs, cats, birds, rabbits, hamsters, and turtles." />
-            <meta name="twitter:image" content={`${FRONTEND_DOMAIN}/photo_21.jpg`}  />
+            <meta name="twitter:image" content={`${FRONTEND_DOMAIN}/photo_21.jpg`} />
         </Helmet>
     )
 
-    if (!feedBack) {
-        return (
-            <>
-                <MetaTags/>
-                <div className="root-conatiner relative ">
-                    <Header open={open} setOpen={setOpen} approachedFrom={"Home"} />
-                    <SideBar open={open} setOpen={setOpen} setAnimal={setAnimal} />
-                    <SubMenu animal={animal} />
-
-                    <AutoBrandSlider />
-                    <Owner />
-
-                    <div>Feedback Loading...</div>
-                    <Footer />
-                </div>
-            </>
-        )
-    }
-
-
     return (
         <>
-            <MetaTags/>
+            <MetaTags />
             <div className="root-conatiner relative ">
                 <Header open={open} setOpen={setOpen} approachedFrom={"Home"} />
                 <SideBar open={open} setOpen={setOpen} setAnimal={setAnimal} />
                 <SubMenu animal={animal} />
 
                 <AutoBrandSlider />
+                <HeroTagline />
                 <Owner />
+                <ShopByPet />
+                <WhatWeOffer />
+                <WhyChooseUs />
 
-                <ShowFeedBack feedBack={feedBack} />
-                <FeedBack refresh={feedBackRefresh} setRefresh={setFeedBackRefresh} />
+
+                {feedBack &&
+                    <>
+                        <ShowFeedBack feedBack={feedBack} />
+                        <FeedBack refresh={feedBackRefresh} setRefresh={setFeedBackRefresh} />
+                    </>
+                }
+                {!feedBack &&
+                    <div>FeedBack loading ...</div>
+
+                }
                 <Footer />
             </div>
         </>

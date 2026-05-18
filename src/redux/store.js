@@ -6,6 +6,7 @@ import filterReducer from "./slices/filterSlice.js";
 import productReducer from "./slices/productSlice.js";
 import activeReducer from "./slices/activeSlice.js";
 import wishListReducer from "./slices/wishListSlice.js";
+import chatReducer from "./slices/chatSlice.js"
 
 import { enableMapSet } from "immer";
 import { 
@@ -46,7 +47,8 @@ const store=configureStore({
         active:activeReducer,
         product:productReducer,
         filter:filterReducer,
-        wishList: persistedWishListReducer
+        wishList: persistedWishListReducer,
+        chat:chatReducer
     },
      middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({

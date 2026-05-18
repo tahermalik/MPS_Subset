@@ -21,7 +21,7 @@ export function useGetAllProduct(refresh, query = "", page,setPage) {
         setHasMore(true);
         setPage(1);
         setQueryVersion(prev => prev + 1); 
-    }, [flavorArray, breedArray, dietArray, brandsArray, type, pet, query, refresh, setPage]);
+    }, [flavorArray, breedArray, dietArray, brandsArray, type, query, refresh, setPage]);
     
     useEffect(() => {
         async function fetchProducts() {

@@ -61,7 +61,7 @@ export default function WishListUI() {
     const userId = location?.state?.userId
 
     const [refresh, setRefresh] = useState(0)
-    const { productData, productVariationData } = useGetWishListData(userId, refresh)
+    const { productData } = useGetWishListData(userId, refresh)
 
     const dispatch = useDispatch()
 
@@ -143,7 +143,7 @@ export default function WishListUI() {
                         <div className="w-full bg-blue-50 flex flex-col rounded-2xl shadow hover:shadow-lg hover:bg-blue-100 transition duration-200">
                             <div className="h-[200px] w-full p-2 flex justify-center items-center">
                                 <img
-                                    src={`${product.image[productVariationData[index]]}`}
+                                    src={`${product.image[product?.productVariation]}`}
                                     alt={product.productName}
                                     className="h-full w-full object-contain rounded-xl"
                                 />
@@ -152,16 +152,16 @@ export default function WishListUI() {
                                 <div className="font-semibold line-clamp-2 text-blue-900">{product.productName}</div>
                                 <div className="flex flex-col gap-1 text-blue-800">
                                     <span className="text-lg font-sans">
-                                        &#8377;{product.originalPrice[productVariationData[index]] - Math.floor((product.originalPrice[productVariationData[index]] * product.discountValue[productVariationData[index]]) / 100)}
+                                        &#8377;{product.originalPrice[product?.productVariation] - Math.floor((product.originalPrice[product?.productVariation] * product.discountValue[product?.productVariation]/ 100))}
                                     </span>
-                                    <span className="line-through text-sm">&#8377;{product.originalPrice[productVariationData[index]]}</span>
-                                    <span className="text-sm">Discount {product.discountValue[productVariationData[index]]}%</span>
+                                    <span className="line-through text-sm">&#8377;{product.originalPrice[product?.productVariation]}</span>
+                                    <span className="text-sm">Discount {product.discountValue[product?.productVariation]}%</span>
                                 </div>
                                 <div className="flex justify-between items-center mt-2">
-                                    <div className="flex items-center px-2 py-1 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200" onClick={(e) => removeFavouriteFromWishList(e, product._id, productVariationData[index])}>
+                                    <div className="flex items-center px-2 py-1 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200" onClick={(e) => removeFavouriteFromWishList(e, product._id, product?.productVariation)}>
                                         <IoIosHeart size={18} className="mr-1" /> Remove
                                     </div>
-                                    <span className="text-sm text-blue-700">{product.netWeight[productVariationData[index]]} kg</span>
+                                    <span className="text-sm text-blue-700">{product.netWeight[product?.productVariation]} kg</span>
                                 </div>
                             </div>
                         </div>

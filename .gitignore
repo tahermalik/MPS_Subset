@@ -16,6 +16,7 @@ node_modules
 .env
 dist
 build
+logged_user_data.txt
 
 generate_seo.js
 
