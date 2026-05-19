@@ -1093,22 +1093,30 @@ function FeedBack(props) {
     const user = useSelector((state) => state?.user?.userData);
 
     async function submitFeedBack() {
-        if (text.trim().length === 0) toast.error("Feedback can't be empty")
-        else {
-            const res = await axios.post(
-                `${USER_ENDPOINTS}/createFeedBack`,
-                { message: text, rating: rating },
-                { withCredentials: true }
-            );
+        try{
 
-            if (res?.data?.bool) toast.success("Feedback added successfully")
-            else toast.error("Error in feedback creation");
-
-            setText("");
-            setRating(0);
+            if (text.trim().length === 0) toast.error("Feedback can't be empty")
+            else {
+                const res = await axios.post(
+                    `${USER_ENDPOINTS}/createFeedBack`,
+                    { message: text, rating: rating },
+                    { withCredentials: true }
+                );
+    
+                console.log("result of feedback :- "+res)
+    
+                if (res?.data?.bool) toast.success("Feedback added successfully")
+                else toast.error("Error in feedback creation");
+    
+                setText("");
+                setRating(0);
+            }
+    
+            props.setRefresh((prev) => prev + 1);
+        }catch(error){
+            console.log(error);
+            toast.error(error?.response?.data?.message)
         }
-
-        props.setRefresh((prev) => prev + 1);
     }
 
     return (
