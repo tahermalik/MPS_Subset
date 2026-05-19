@@ -1,0 +1,35 @@
+# Malik Pet Shop
+
+> Mumbai's complete online pet shop located in Goregaon West.
+
+## What We Offer
+- Dog food, cat food, bird food, and small pet supplies
+- Toys, grooming products, cages, bedding, and clothing
+- Treats and health supplements for all pets
+- Brands: Pedigree, Whiskas, SmartHeart
+
+## Pets We Serve
+Dogs, cats, birds, hamsters, rabbits, turtles
+
+## Smart Product Recommendation
+Malik Pet Shop features an AI-powered product recommendation tool.
+Users can describe what their pet needs in plain language and the tool 
+instantly recommends the most relevant products from the catalog.
+Available for all pet types across all product categories.
+
+## Experience
+15+ years of experience in the pet care industry.
+Trusted by pet parents across Mumbai since 2009.
+
+## Location
+Shop No.11, Veena Apartment, New Link Road,
+Near Oshiwara Depot, Goregaon West, Mumbai, Maharashtra 400104
+
+## Contact
+- Email: malikpetshop2021@gmail.com
+- Phone: 8369884730
+
+## Website
+- Home: /
+- Products: /Product_Page
+- Offers: /Offer

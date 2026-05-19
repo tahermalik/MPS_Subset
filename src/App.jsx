@@ -11,6 +11,10 @@ import SingleProductDisplay from "./pages/SingleProductDisplay";
 import Login from "./pages/Login";
 import ScrollToTop from "./pages/Utility";
 import AIChatDrawer from "./pages/AIChatDrawer";
+import AddProduct from "./pages/addProduct";
+import CreateOffer from "./pages/addOffer";
+import CouponRuleCreator from "./pages/CoupanManagement";
+import AdminSetting from "./pages/adminSetting";
 
 function App() {
   useLenis();
@@ -46,6 +50,14 @@ function App() {
         <Route path="/Offer" element={<OfferSection />}></Route>
         <Route path="/Product_Page/Offer" element={<OfferSection />}></Route>
         <Route path="/Product_Page/SingleProductDisplay/Offer" element={<OfferSection />}></Route>
+
+        {/* Admin Routes */}
+        <Route path="/adminSetting" element={<AdminSetting />}>
+          <Route path="" element={<AddProduct />}></Route>
+          <Route path="addProduct" element={<AddProduct />}></Route>
+          <Route path="createCoupon" element={<CouponRuleCreator />}></Route>
+          <Route path="createOffer" element={<CreateOffer />}></Route>
+        </Route>
 
       </Routes>
       <AIChatDrawer />
