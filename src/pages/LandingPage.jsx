@@ -201,6 +201,20 @@ const pets = [
     { label: "Small Pets", emoji: "🐹", desc: "Hamsters, rabbits, turtles & more", type: "small pets" },
 ];
 
+function AIRecommendation() {
+  return (
+    <section className="w-full bg-white py-12 px-6 text-center">
+      <h2 className="text-2xl sm:text-3xl font-bold text-[#0D47A1] mb-3">
+        🤖 Smart Pet Product Recommendations
+      </h2>
+      <p className="text-[#1565C0] text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+        Describe what your pet needs and our smart tool will instantly recommend 
+        the right products — for dogs, cats, birds, and more.
+      </p>
+    </section>
+  )
+}
+
 function ShopByPet() {
     const navigate=useNavigate()
     return (
@@ -1544,6 +1558,7 @@ export default function LandingPage() {
                 <ShopByPet />
                 <WhatWeOffer />
                 <WhyChooseUs />
+                <AIRecommendation/>
 
 
                 {feedBack &&
