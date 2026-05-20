@@ -35,18 +35,29 @@ const wishListPersistConfig = {
     storage
 };
 
+const filterPersistConfig = {
+    key: "filter",
+    storage
+};
+
 const persistedWishListReducer = persistReducer(
     wishListPersistConfig,
     wishListReducer
 );
 
+const persistedFilterReducer = persistReducer(
+    filterPersistConfig,
+    filterReducer
+);
+
+// both filter and wishlist redux data now persist on reload
 const store=configureStore({
     reducer:{
         layout:layoutReducer, 
         user:userReducer,
         active:activeReducer,
         product:productReducer,
-        filter:filterReducer,
+        filter:persistedFilterReducer,
         wishList: persistedWishListReducer,
         chat:chatReducer
     },
