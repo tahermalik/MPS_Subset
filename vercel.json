@@ -1,5 +1,5 @@
 {
-   "headers": [
+  "headers": [
     {
       "source": "/sitemap.xml",
       "headers": [
@@ -11,6 +11,10 @@
     }
   ],
   "rewrites": [
+    {
+      "source": "/product/singleProduct/:id",
+      "destination": "https://malikpetshop.onrender.com/product/singleProduct/:id"
+    },
     { "source": "/((?!sitemap.xml|robots.txt).*)", "destination": "/" }
   ]
 }
