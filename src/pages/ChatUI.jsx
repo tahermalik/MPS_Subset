@@ -7,7 +7,7 @@ import axios from "axios";
 import { RECCOMEND_ENDPOINT, USER_ENDPOINTS } from "./endpoints";
 import { useNavigate } from "react-router-dom";
 
-export default function ChatUI() {
+export default function ChatUI(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const messages = useSelector((state) => state?.chat?.messages);
@@ -24,8 +24,9 @@ export default function ChatUI() {
     
     /// directly making call to the python server
     let response = await axios.post(`${RECCOMEND_ENDPOINT}/recommend`, { userQuery:input }, { withCredentials: true })
-    
-    const recommendedProductsArray = response?.data?.result
+    const recommendedProductsArray = response?.data
+    // console.log(recommendedProductsArray)
+    // console.log("recommended products"+recommendedProductsArray.length)
 
     const recommendedProductsObj = {
       role: "bot",
@@ -38,6 +39,7 @@ export default function ChatUI() {
         {
           name: `${recommendedProductsArray[i]["productName"]}`,
           usp: `${recommendedProductsArray[i]["usp"]}`,
+          productId:`${recommendedProductsArray[i]["product_id"]}`,
           productData: recommendedProductsArray[i]
         }
       )
@@ -88,7 +90,7 @@ export default function ChatUI() {
                             <p className="font-semibold text-blue-900">{p.name}</p>
                           </div>
                           <p className="text-sm text-blue-800 mt-1">{p.usp}</p>
-                          <div onClick={(e) => { e.stopPropagation(); navigate("/SingleProductDisplay", { state: p.productData }) }} className="mt-2 px-3 py-1 bg-blue-400 text-white rounded-lg hover:bg-blue-300 font-medium transition w-fit">
+                          <div onClick={(e) => { e.stopPropagation(); navigate("/SingleProductDisplay", { state: p.productId }); props?.setOpen(false) }} className="mt-2 px-3 py-1 bg-blue-400 text-white rounded-lg hover:bg-blue-300 font-medium transition w-fit">
                             View Product →
                           </div>
                         </div>

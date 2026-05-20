@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { SideBar,SubMenu } from "./LandingPage";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { BASE_URL } from "./endpoints";
+import { useGetProductData } from "../hooks/useGetProductData";
 
 function OfferComponent(props) {
     const dispath = useDispatch();
@@ -125,7 +126,7 @@ function ProductInfo(props) {
 
             {/* Offers */}
             <div className="flex flex-row gap-4 w-full overflow-x-auto scrollbar-hide p-2 rounded-2xl">
-                {netQuantityArray.map((offer, index) => (
+                {netQuantityArray?.map((offer, index) => (
                     <OfferComponent
                         index={index}
                         netQuantity={netQuantityArray[index]}
@@ -294,7 +295,9 @@ export default function SingleProductDisplay() {
     const dispatch = useDispatch()
     const location = useLocation()
 
-    const productData = location?.state;
+    /// this is the point from where i am fetching the product data via custom hook
+    const productId = location?.state;
+    const productData=useGetProductData(productId);
 
     useLayoutEffect(() => {
         const windowHeight = window.innerHeight

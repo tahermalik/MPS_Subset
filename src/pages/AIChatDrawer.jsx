@@ -52,7 +52,7 @@ export default function AIChatDrawer() {
                 </button>
               </div>
 
-              <ChatUI />
+              <ChatUI setOpen={setOpen} />
             </motion.div>
           </>
         )}

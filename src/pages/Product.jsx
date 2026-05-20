@@ -718,9 +718,11 @@ function DisplayProducts(props) {
     const dispatch = useDispatch()
 
     const { productData, hasMore, loading } = useGetAllProduct(props?.refresh, props?.query, page, setPage);
+    
+    // when the product is clicked then this function is invoked
     function productClicked(product) {
         dispatch(setCompleteProductInfo(product))
-        navigate("/Product_Page/SingleProductDisplay", { state: product })
+        navigate("/Product_Page/SingleProductDisplay", { state: product._id })
     }
 
     useEffect(() => {
