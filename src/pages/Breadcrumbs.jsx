@@ -32,7 +32,7 @@ export function Breadcrumbs() {
                 // console.log(index, requestedPath,"   Taher")
                 if(pathArray[index]==="Wish_List") navigate(`/${requestedPath}${pathArray[index]}`, { state: { userId: userId } })
                 else if(pathArray[index]==="Cart") navigate(`/${requestedPath}${pathArray[index]}`, { state: { userId: userId } })
-                else if(pathArray[index]===product?.cleanProductName) navigate(`/${requestedPath}SingleProductDisplay`, { state:product  })
+                else if(pathArray[index]===product?.cleanProductName) navigate(`/${requestedPath}SingleProductDisplay`, { state:product?._id  })
                 else navigate(`/${requestedPath}${pathArray[index]}`)
             }
         }catch(error){

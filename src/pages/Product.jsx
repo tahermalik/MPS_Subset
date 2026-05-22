@@ -445,7 +445,7 @@ function ProductCard(props) {
     const userId = userData?._id; //// here i will get the user id
     // const imgCounter=useSelector((state)=>state?.active?.imgCounter)
     const [imgCounter, setImgCounter] = useState(0)
-    const loadingRef=useRef({})
+    const loadingRef = useRef({})
 
     useLayoutEffect(() => {
         const userWishListIds = userWishListData?.map((obj) => { return obj["productId"] })
@@ -522,13 +522,13 @@ function ProductCard(props) {
 
     //// fetching the wishList for the user who is not logged in
     const wishList = useSelector((state) => state?.user?.userDataNotLoggedIn?.wishList)
-    
+
     async function favProduct(e) {
         try {
 
             const productId = props?.productId;
-            const productVariation=imgCounter
-           
+            const productVariation = imgCounter
+
             // as the ref.current is an object of productId would be the key
             if (loadingRef.current[`${productId}_${imgCounter}`]) {
                 return; // 🚫 block spam click
@@ -549,11 +549,11 @@ function ProductCard(props) {
                 productVariation: imgCounter
             }
 
-            
+
             //// this line is written at end as dispatch is asynchronous in nature
             dispatch(setFavourite(obj))
-            
-            try{
+
+            try {
                 await axios.post(
                     `${USER_ENDPOINTS}/favourite`,
                     {
@@ -562,14 +562,14 @@ function ProductCard(props) {
                     },
                     { withCredentials: true }
                 );
-            }catch(error){
+            } catch (error) {
                 setIsPresent(!newIsPresent);
                 dispatch(setFavourite({
                     productId: props?.productId,
                     productVariation: imgCounter
                 }));
                 console.log("some problem with the API call while adding the favourite product")
-            }finally {
+            } finally {
                 // unblocking the stuff
                 loadingRef.current[`${props?.productId}_${imgCounter}`] = false;
             }
@@ -597,75 +597,69 @@ function ProductCard(props) {
             {skeleton ? <ProductCardSkeleton /> :
 
                 // initially setting 0th product to be displayed whicle clicking on the product
-                <div className="w-full h-auto sm:aspect-[3/4] bg-white flex flex-col rounded-2xl 
-shadow-md hover:shadow-xl transition-all duration-300 
-border border-blue-100 cursor-pointer overflow-hidden">
+
+                <div className="w-full aspect-[3/5] sm:aspect-[3/4] bg-white flex flex-col rounded-2xl 
+    shadow-md hover:shadow-xl transition-all duration-300 
+    border border-blue-100 cursor-pointer overflow-hidden">
 
                     {/* Banner */}
-                    <div className="bg-blue-50 text-blue-700 flex-[0.7] w-full rounded-t-2xl px-2 
-    text-sm sm:text-[clamp(13px,1.2vw,16px)] font-medium tracking-wide">
-                        Extra <span className="font-semibold mx-1">5%</span> discount , use the code
+                    <div className="bg-blue-50 text-blue-700 flex-[0.5] w-full rounded-t-2xl px-2 
+        text-[10px] sm:text-[clamp(13px,1.2vw,16px)] font-medium tracking-wide flex items-center">
+                        Extra <span className="font-semibold mx-1">5%</span> off, use code
                         <span className="font-semibold ml-1">MPSCH</span>
                     </div>
 
                     {/* Image */}
-                    <div className="h-[170px] sm:flex-[4] w-full bg-blue-50 flex items-center justify-center overflow-hidden">
+                    <div className="flex-[3] w-full bg-blue-50 flex items-center justify-center overflow-hidden">
                         <img
-                            className="h-[90%] w-[90%] sm:h-[80%] sm:w-[80%] object-contain 
-            transition-transform duration-300 ease-in-out 
-            hover:scale-110"
+                            className="h-[85%] w-[85%] object-contain 
+                transition-transform duration-300 ease-in-out hover:scale-110"
                             src={`${props.imagesArray[imgCounter]}`}
                             alt={`${props?.productName}`}
                         />
                     </div>
 
                     {/* Content */}
-                    <div className="flex flex-col gap-1 sm:gap-2 w-full px-2 py-2 sm:flex-[4] sm:justify-evenly">
+                    <div className="flex flex-col gap-1 w-full px-2 py-1 flex-[3] justify-evenly overflow-hidden">
 
                         {/* Product Name */}
-                        <div className="line-clamp-2 sm:line-clamp-3 sm:min-h-[3.8em] 
-        text-sm sm:text-[clamp(13px,1.5vw,17px)] font-semibold text-gray-800">
+                        <div className="line-clamp-2 text-[11px] sm:text-[clamp(13px,1.5vw,17px)] font-semibold text-gray-800">
                             {props.productName}
                         </div>
 
                         {/* Price */}
-                        <div className="font-sans text-gray-800 flex justify-between items-center">
-                            <div className="w-[70%]">
-
-                                <span className="text-base sm:text-[clamp(14px,1.8vw,20px)] text-blue-700 font-semibold">
+                        <div className="font-sans text-gray-800">
+                            <div>
+                                <span className="text-[12px] sm:text-[clamp(14px,1.8vw,20px)] text-blue-700 font-semibold">
                                     &#8377;{discountCalc(props.originalPriceArray[imgCounter], props.discountArray[imgCounter])}
                                 </span>
-
-                                <span className="text-sm sm:text-[clamp(13px,1.2vw,16px)] text-blue-500 ml-1">
+                                <span className="text-[10px] sm:text-[clamp(13px,1.2vw,16px)] text-blue-500 ml-1">
                                     (&#8377;{gramAmountCalc(
                                         props.originalPriceArray[imgCounter],
                                         props.discountArray[imgCounter],
                                         props.netWeightArray[imgCounter]
                                     )}/100g)
                                 </span>
-
                                 <p className="text-gray-500">
-                                    <span className="line-through text-sm sm:text-[clamp(13px,1.2vw,16px)]">
+                                    <span className="line-through text-[10px] sm:text-[clamp(13px,1.2vw,16px)]">
                                         &#8377;{props.originalPriceArray[imgCounter]}
                                     </span>
-                                    <span className="text-sm sm:text-[clamp(13px,1.2vw,16px)] text-blue-600 ml-1 font-medium">
-                                        Discount {props.discountArray[imgCounter]}%
+                                    <span className="text-[10px] sm:text-[clamp(13px,1.2vw,16px)] text-blue-600 ml-1 font-medium">
+                                        {props.discountArray[imgCounter]}% off
                                     </span>
                                 </p>
-
                             </div>
                         </div>
 
                         {/* Bottom */}
                         <div className="flex justify-between items-center">
-
-                            <div className="flex gap-1 font-sans text-sm sm:text-[clamp(13px,1.2vw,16px)] flex-wrap">
+                            <div className="flex gap-1 font-sans text-[10px] sm:text-[clamp(13px,1.2vw,16px)] flex-wrap">
                                 {props.netWeightArray.map((offer, index) => (
                                     <div
                                         key={index}
-                                        className={`border px-2 py-0.5 rounded-full font-semibold cursor-pointer 
-                        transition-all duration-200
-                        ${imgCounter === index
+                                        className={`border px-1.5 py-0.5 rounded-full font-semibold cursor-pointer 
+                            transition-all duration-200
+                            ${imgCounter === index
                                                 ? "border-blue-600 bg-blue-600 text-white"
                                                 : "border-blue-300 text-blue-700 hover:bg-blue-100"
                                             }`}
@@ -676,34 +670,22 @@ border border-blue-100 cursor-pointer overflow-hidden">
                                             e.preventDefault();
                                         }}
                                     >
-                                        {props.netWeightArray[index]} kg
+                                        {props.netWeightArray[index]}kg
                                     </div>
                                 ))}
                             </div>
 
                             {userData?.role === "admin" && (
-                                <div
-                                    onClick={(e) => deleteProduct(e)}
-                                    className="p-1 cursor-pointer rounded-full hover:bg-red-100 transition-colors"
-                                >
-                                    <MdOutlineDeleteOutline size={20} className="text-red-600" />
+                                <div onClick={(e) => deleteProduct(e)} className="p-1 cursor-pointer rounded-full hover:bg-red-100 transition-colors">
+                                    <MdOutlineDeleteOutline size={16} className="text-red-600" />
                                 </div>
                             )}
-
                             {userData?.role !== "admin" && (
-                                <div
-                                    onClick={(e) => favProduct(e)}
-                                    className="p-1 cursor-pointer rounded-full hover:bg-blue-100 transition-colors"
-                                >
-                                    <IoIosHeart
-                                        size={20}
-                                        color={isPresent ? "red" : "white"}
-                                        style={{ stroke: "red", strokeWidth: 20 }}
-                                    />
+                                <div onClick={(e) => favProduct(e)} className="p-1 cursor-pointer rounded-full hover:bg-blue-100 transition-colors">
+                                    <IoIosHeart size={16} color={isPresent ? "red" : "white"} style={{ stroke: "red", strokeWidth: 20 }} />
                                 </div>
                             )}
                         </div>
-
                     </div>
                 </div>
             }
@@ -718,8 +700,7 @@ function DisplayProducts(props) {
     const dispatch = useDispatch()
 
     const { productData, hasMore, loading } = useGetAllProduct(props?.refresh, props?.query, page, setPage);
-    
-    // when the product is clicked then this function is invoked
+
     function productClicked(product) {
         dispatch(setCompleteProductInfo(product))
         navigate("/Product_Page/SingleProductDisplay", { state: product._id })
@@ -745,24 +726,37 @@ function DisplayProducts(props) {
 
     if (productData.length === 0) {
         return (
-            <div>Loading...</div>
-        )
-    } else {
-        // console.log(productData)
-        // console.log(productData[0]["image"])
-
-        return (
-            <div className="flex items-start justify-starts gap-4">
-                {productData.map((product) => {
-                    return (
-                        <div onClick={() => productClicked(product)} className="h-fit w-[90%] sm:w-[250px] gap-2">
-                            <ProductCard imagesArray={product.image} netWeightArray={product.netWeight} originalPriceArray={product.originalPrice} discountArray={product.discountValue} productName={product.productName} productId={product._id} stock={product.stock} reservedStock={product.reservedStock} refresh={props.refresh} setRefresh={props.setRefresh} brand={product.brand} />
-                        </div>
-                    )
-                })}
+            <div className="flex items-center justify-center w-full py-10">
+                <div className="text-gray-500 text-sm">Loading...</div>
             </div>
         )
     }
+
+    return (
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 px-3 sm:px-0">
+            {productData.map((product) => (
+                <div
+                    key={product._id}
+                    onClick={() => productClicked(product)}
+                    className="w-full cursor-pointer"
+                >
+                    <ProductCard
+                        imagesArray={product.image}
+                        netWeightArray={product.netWeight}
+                        originalPriceArray={product.originalPrice}
+                        discountArray={product.discountValue}
+                        productName={product.productName}
+                        productId={product._id}
+                        stock={product.stock}
+                        reservedStock={product.reservedStock}
+                        refresh={props.refresh}
+                        setRefresh={props.setRefresh}
+                        brand={product.brand}
+                    />
+                </div>
+            ))}
+        </div>
+    )
 }
 
 export default function Product() {
@@ -798,7 +792,7 @@ export default function Product() {
             <SideBar open={open} setOpen={setOpen} setAnimal={setAnimal} />
             <SubMenu animal={animal} />
 
-            <Breadcrumbs/>
+            <Breadcrumbs />
             {/* <div className={`w-[100%] flex flex-col sm:flex-row`} style={{ height: `${productHeight}px` }}> */}
             <div className={`w-[100%] flex flex-col sm:flex-row h-auto`}>
                 {/* Filter Display for Desktop */}
@@ -831,9 +825,9 @@ export default function Product() {
 
 
                 <div className="h-auto sm:w-4/5 p-2 flex flex-row flex-wrap justify-center sm:justify-between items-center sm:items-start gap-x-2 gap-y-10 border-l border-black">
-                    <DisplayProducts refresh={refresh} setRefresh={setRefresh} query={query} data={data} loaderRef={loaderRef} setHasMore={setHasMore}/>
+                    <DisplayProducts refresh={refresh} setRefresh={setRefresh} query={query} data={data} loaderRef={loaderRef} setHasMore={setHasMore} />
                 </div>
-                
+
             </div>
             {/* Loader trigger */}
             {hasMore && (

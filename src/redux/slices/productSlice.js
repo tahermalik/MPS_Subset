@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const productSlice = createSlice({
   name: "product",
   initialState: {
-    originalPrices:[],discounts:[],images:[],netQuantity:[],productName:null,nutrition:"null",calories:"null",skinHealth:"null",digestion:"null",dentalHealth:"null",manufacturerDetails:null,productDescription:null,completeProductInfo:null
+    originalPrices:[],discounts:[],images:[],netQuantity:[],productName:null,manufacturerDetails:null,productDescription:null,completeProductInfo:null,productId:""
   },
   reducers: {
     setOriginalPrice:(state,action)=>{
@@ -21,21 +21,6 @@ const productSlice = createSlice({
     setProductName:(state,action)=>{
         state.productName.includes(action.payload)
     },
-    setNutrition:(state,action)=>{
-        state.nutrition.includes(action.payload)
-    },
-    setCalories:(state,action)=>{
-        state.calories.includes(action.payload)
-    },
-    setSkinHealth:(state,action)=>{
-        state.skinHealth.includes(action.payload)
-    },
-    setDigestion:(state,action)=>{
-        state.digestion.includes(action.payload)
-    },
-    setDentalHealth:(state,action)=>{
-        state.dentalHealth.includes(action.payload)
-    },
     setManufacturerDetails:(state,action)=>{
         state.manufacturerDetails.includes(action.payload)
     },
@@ -44,9 +29,12 @@ const productSlice = createSlice({
     },
     setCompleteProductInfo:(state,action)=>{
         state.completeProductInfo=action.payload
+    },
+    setProductId:(state,action)=>{
+        state.productId=action.payload
     }
   }
 })
 
-export const { setOriginalPrice,setDiscount,setImage,setProductName,setNetQuantity,setNutrition,setCalories,setSkinHealth,setDigestion,setDentalHealth,setManufacturerDetails,setProductDescription,setCompleteProductInfo} = productSlice.actions;
+export const { setOriginalPrice,setDiscount,setImage,setProductName,setNetQuantity,setManufacturerDetails,setProductDescription,setCompleteProductInfo,setProductId} = productSlice.actions;
 export default productSlice.reducer;
