@@ -55,7 +55,7 @@ function OfferComponent(props) {
                         </span>
 
                         <span className="line-through sm:text-sm text-slate-400">
-                            {props.originalPrice}
+                            ₹{props.originalPrice}
                         </span>
                     </div>
 
@@ -101,14 +101,8 @@ function ProductInfo(props) {
     const userId = useSelector((state) => state?.user?.userData?._id)
     const productVariation = useSelector((state) => state?.active?.imgCounter)
 
-
-    const details = [
-        { title: "nutrition", value: nutrition },
-        { title: "calories", value: calories },
-        { title: "Skin Health", value: skinHealth },
-        { title: "digestion", value: digestion },
-        { title: "Dental Health", value: dentalHealth },
-    ]
+    // this is the way of showing products information to the end user
+    const details = props?.overview || []
 
 
     return (
@@ -166,10 +160,11 @@ function ProductInfo(props) {
                             className="rounded-2xl p-4 bg-white/70 backdrop-blur-md border border-blue-200/40 shadow-[0_6px_20px_rgba(37,99,235,0.12)]transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(37,99,235,0.25)]"
                         >
                             <div className="font-semibold text-blue-900 text-lg tracking-wide">
-                                {item.title}
+                                {item.key}
                             </div>
                             <div className="text-sm mt-1 text-slate-700 leading-relaxed">
-                                {item.value}
+                                
+                                {isNaN(item?.value) ? item.value:item.value*props?.netQuantityArray[productVariation] +" "+(item.unit || "")}
                             </div>
                         </div>
                     ))}
@@ -352,6 +347,7 @@ export default function SingleProductDisplay() {
                         discountValueArray={productData.discountValue}
                         productId={productData._id}
                         brand={productData.brand}
+                        overview={productData.overview}
                     />
                 </div>
             </div>
