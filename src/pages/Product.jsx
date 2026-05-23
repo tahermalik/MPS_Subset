@@ -124,8 +124,8 @@ const PriceRange = () => {
     );
 };
 
-export const items_flavor = ["tuna", "vegetables", "salmon", "meat", "mackerel", "seafood", "a", "f", "r", "w"]
-export const items_breed = ["mini", "medium", "maxi"]
+export const items_flavor = ["tuna", "vegetables", "salmon", "meat", "mackerel", "seafood", "NA"]
+export const items_breed = ["mini", "medium", "maxi","NA"]
 export const items_diet = ["veg", "non-veg"]
 export const items_brands = ["grain zero", "pedigree", "smart heart", "whiskas", "meo", "purepet", "drools", "chappi", "sense", "royal canin", "maxi"]
 

@@ -199,8 +199,10 @@ export default function AddProduct() {
           {(path["pet"] === "cat" || path["pet"] === "dog") && path["category"] == "cage" && path["category"] !== "toys" &&
             <Select options={optionsDiet} onChange={(e) => handleDietSelect(e.label)} placeholder="Select Veg/Non-Veg" styles={customStyles} value={optionsDiet?.find(o => o.value === path.diet) || null} required />
           }
+          <div data-lenis-prevent>
 
-          <Select options={optionsBrand} onChange={(e) => handleBrandSelect(e.label)} placeholder="Select Brand" styles={customStyles} value={optionsBrand?.find(o => o.value === path.brand) || null} required />
+            <Select options={optionsBrand} onChange={(e) => handleBrandSelect(e.label)} placeholder="Select Brand" styles={customStyles} value={optionsBrand?.find(o => o.value === path.brand) || null} required/>
+          </div>
 
           <div className="border border-blue-500 rounded-xl p-2">
             <div className="text-blue-700 mb-2 underline">Product Details</div>
