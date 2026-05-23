@@ -7,6 +7,7 @@ import { SideBar,SubMenu } from "./LandingPage";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { BASE_URL } from "./endpoints";
 import { useGetProductData } from "../hooks/useGetProductData";
+import { useEffect } from "react";
 
 function OfferComponent(props) {
     const dispath = useDispatch();
@@ -82,11 +83,6 @@ function OfferComponent(props) {
 
 function ProductInfo(props) {
     const dispatch = useDispatch()
-    const nutrition = useSelector((state) => state?.product?.nutrition)
-    const calories = useSelector((state) => state?.product?.calories)
-    const skinHealth = useSelector((state) => state?.product?.skinHealth)
-    const digestion = useSelector((state) => state?.product?.digestion)
-    const dentalHealth = useSelector((state) => state?.product?.dentalHealth)
     const navigate = useNavigate()
 
     /// this is the array which we are going to recevice via backend
@@ -192,7 +188,7 @@ function ProductImg({ imagesArray = [], productHeight }) {
             <img
                 src={`${imageSrc}`}
                 alt="Product image"
-                className="w-full h-full object-contain
+                className="w-full h-full md:object-contain object-contain
                    rounded-xl
                    transition-transform duration-500 ease-out
                    hover:scale-105
@@ -294,6 +290,14 @@ export default function SingleProductDisplay() {
     const productId = location?.state;
     const productData=useGetProductData(productId);
 
+    const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 640);
+
+    useEffect(() => {
+        const handleResize = () => setIsDesktop(window.innerWidth >= 640);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     useLayoutEffect(() => {
         const windowHeight = window.innerHeight
         setProductHeight(windowHeight - headerHeight)
@@ -322,11 +326,11 @@ export default function SingleProductDisplay() {
             <div
                 className="w-full flex sm:flex-row flex-col gap-0 bg-gradient-to-br from-blue-50/60 via-blue-100/50 to-blue-200/40 backdrop-blur-xl border border-blue-200/40
                 shadow-[0_20px_60px_rgba(37,99,235,0.25)] animate-fadeInProductDisplay"
-                style={{ height: `${productHeight}px` }}
+                style={isDesktop ? { height: `${productHeight}px` }:undefined}
             >
                 {/* LEFT: Product Images */}
                 <div
-                    className="sm:w-[40%] w-[100%] h-full overflow-auto scrollbar-hide flex items-center justify-center bg-gradient-to-br from-blue-500/10 to-blue-600/20
+                    className="sm:w-[40%] w-[100%] h-full sm:overflow-auto sm:scrollbar-hide flex items-center justify-center bg-gradient-to-br from-blue-500/10 to-blue-600/20
                     shadow-inner transition-all duration-500 ease-out hover:bg-blue-500/20"
                 >
                     <ProductImg
@@ -337,7 +341,7 @@ export default function SingleProductDisplay() {
 
                 {/* RIGHT: Product Info */}
                 <div
-                    className="sm:w-[60%] w-[100%] sm:h-auto sm:p-4 p-2 flex flex-row flex-wrap justify-evenly gap-x-4 gap-y-10 overflow-auto sm:scrollbar-hide
+                    className="sm:w-[60%] w-[100%] sm:h-auto sm:p-4 p-2 flex flex-row flex-wrap justify-evenly gap-x-4 gap-y-10 sm:overflow-auto sm:scrollbar-hide
                     bg-white/40 shadow-[inset_0_0_30px_rgba(37,99,235,0.08)]
                     transition-all duration-500 h-fit"
                 >
