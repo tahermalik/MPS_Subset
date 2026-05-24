@@ -13,18 +13,29 @@
     <priority>0.8</priority>
   </url>
 
+    <!-- Products -->
    <url>
-        <loc>https://malik-pet-shop-main.vercel.app/product/singleProduct/69e785c7509114c8247071b5</loc>
+        <loc>https://malik-pet-shop-main.vercel.app/product/singleProduct/6a1024c21845f261913a25d0</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://malik-pet-shop-main.vercel.app/product/singleProduct/69e7944c7187ee5f7d610a1a</loc>
+        <loc>https://malik-pet-shop-main.vercel.app/product/singleProduct/6a102e9198c680525b788571</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://malik-pet-shop-main.vercel.app/product/singleProduct/6a0d51a63696af248c49705e</loc>
+        <loc>https://malik-pet-shop-main.vercel.app/product/singleProduct/6a10693d07f09129f5e1a759</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://malik-pet-shop-main.vercel.app/product/singleProduct/6a11552b56938d95b47cf1d8</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://malik-pet-shop-main.vercel.app/product/singleProduct/6a11560656938d95b47cf1e0</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
