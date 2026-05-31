@@ -352,13 +352,13 @@ function SmoothUnderline() {
 }
 
 export const cat = {
-    "cat food": ["dry food", "wet food", "kitten food", "veterinary food"],
-    "treats": ["biscuits", "meat treats", "creamy treats", "wet treats"],
-    "clothing": ["fancy accessories", "occassion wears"],
-    "litter & accessories": ["ball shaped litters", "cat litter trays", "sand litter", "scoopers"],
-    "toys": ["cat nip toys", "interactive toys", "squeaky toys", "steaky toys"],
-    "grooming": ["brushes & combs", "ceodrants", "cloves", "nail cutters", "powders", "shampoo & soaps", "towels & wipes"],
-    "cage": ["cage"]
+    "cat food": ["dry food", "wet food", "kitten food", "veterinary food","Other"],
+    "treats": ["biscuits", "meat treats", "creamy treats", "wet treats","Other"],
+    "clothing": ["fancy accessories", "occassion wears","Other"],
+    "litter & accessories": ["ball shaped litters", "cat litter trays", "sand litter", "scoopers","Other"],
+    "toys": ["cat nip toys", "interactive toys", "squeaky toys", "steaky toys","Other"],
+    "grooming": ["brushes & combs", "ceodrants", "cloves", "nail cutters", "powders", "shampoo & soaps", "towels & wipes","Other"],
+    "cage": ["cage","Other"]
 }
 
 function CatStuff() {
@@ -425,13 +425,13 @@ function MobileCatStuff() {
 }
 
 export const dog = {
-    "dog food": ["dry food", "wet food", "puppy food", "veterinary food"],
-    "treats": ["biscuits", "meat treats", "creamy treats", "wet treats"],
-    "clothing": ["t-shirts", "occassion wears", "winter wears", "shoes"],
-    "bedding": ["beds", "blankets", "cooling mats", "cushions"],
-    "toys": ["leather toys", "interactive toys", "squeaky toys", "rope toys", "flush toys"],
-    "grooming": ["brushes & combs", "deodrants", "gloves", "nail cutters", "powders", "shampoo & soaps", "towels & wipes"],
-    "cage": ["cage"]
+    "dog food": ["Adult Dry Food", "Wet food", "Puppy Dry Food", "Veterinary Food","Other"],
+    "treats": ["Biscuits", "Gravy (Wet)", "Dry", "Bone","Denta Sticks","NA","Other"],
+    "clothing": ["t-shirts", "occassion wears", "winter wears", "shoes","Other"],
+    "bedding": ["beds", "blankets", "cooling mats", "cushions","Other"],
+    "toys": ["leather toys", "interactive toys", "squeaky toys", "rope toys", "flush toys","Other"],
+    "grooming": ["brushes & combs", "deodrants", "gloves", "nail cutters", "powders", "shampoo & soaps", "towels & wipes","Other"],
+    "cage": ["cage","Other"]
 };
 
 function DogStuff() {
@@ -497,10 +497,10 @@ function MobileDogStuff() {
 }
 
 
-export const birds = ["bowls", "cage", "food", "health supplements"];
-export const hamster = ["ball", "cage", "food", "toys"];
-export const rabbit = ["cage", "food", "health supplements"];
-export const turtle = ["food", "health supplements"];
+export const birds = ["bowls", "cage", "food", "health supplements","Other"];
+export const hamster = ["ball", "cage", "food", "toys","Other"];
+export const rabbit = ["cage", "food", "health supplements","Other"];
+export const turtle = ["food", "health supplements","Other"];
 
 
 function SmallPetStuff() {
@@ -1443,18 +1443,18 @@ export function Footer() {
 
                     {/* Social Icons */}
                     <div className="flex flex-row items-center gap-3">
-                        <div className="rounded-full border border-blue-400 p-1.5 flex justify-center items-center hover:bg-[#29B6F6] cursor-pointer transition-colors duration-200">
+                        <Link target="_blank" to="https://wa.me/918369884730" className="rounded-full border border-blue-400 p-1.5 flex justify-center items-center hover:bg-[#29B6F6] cursor-pointer transition-colors duration-200">
                             <FaWhatsapp size={18} color="#81D4FA" />
-                        </div>
-                        <div className="rounded-full border border-blue-400 p-1.5 flex justify-center items-center hover:bg-[#29B6F6] cursor-pointer transition-colors duration-200">
+                        </Link>
+                        <Link target="_blank" to="https://www.instagram.com/sketchinferno/" className="rounded-full border border-blue-400 p-1.5 flex justify-center items-center hover:bg-[#29B6F6] cursor-pointer transition-colors duration-200">
                             <FaInstagram size={18} color="#81D4FA" />
-                        </div>
-                        <div className="rounded-full border border-blue-400 p-1.5 flex justify-center items-center hover:bg-[#29B6F6] cursor-pointer transition-colors duration-200">
+                        </Link>
+                        <Link to="https://x.com/MalikPetShop" target="_blank" className="rounded-full border border-blue-400 p-1.5 flex justify-center items-center hover:bg-[#29B6F6] cursor-pointer transition-colors duration-200">
                             <RiTwitterXLine size={18} color="#81D4FA" />
-                        </div>
-                        <div className="rounded-full border border-blue-400 p-1.5 flex justify-center items-center hover:bg-[#29B6F6] cursor-pointer transition-colors duration-200">
+                        </Link>
+                        <Link className="rounded-full border border-blue-400 p-1.5 flex justify-center items-center hover:bg-[#29B6F6] cursor-pointer transition-colors duration-200">
                             <FaFacebook size={18} color="#81D4FA" />
-                        </div>
+                        </Link>
                     </div>
                 </div>
 

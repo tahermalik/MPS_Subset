@@ -17,7 +17,7 @@ import { FiFilter } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { SideBar, SubMenu } from "./LandingPage"
-import { setCompleteProductInfo } from "../redux/slices/productSlice"
+import { setProductId, setBrandName } from "../redux/slices/productSlice"
 import { Breadcrumbs } from "./Breadcrumbs"
 import ScrollToTop from "./Utility.jsx"
 
@@ -124,10 +124,10 @@ const PriceRange = () => {
     );
 };
 
-export const items_flavor = ["tuna", "vegetables", "salmon", "meat", "mackerel", "seafood", "NA"]
-export const items_breed = ["mini", "medium", "maxi","NA"]
-export const items_diet = ["veg", "non-veg"]
-export const items_brands = ["grain zero", "pedigree", "smart heart", "whiskas", "meo", "purepet", "drools", "chappi", "sense", "royal canin", "maxi"]
+export const items_flavor = ["Tuna", "Vegetables", "Salmon", "Meat", "Mackerel", "Seafood", "NA", "Other"]
+export const items_breed = ["Mini", "Medium", "Maxi", "NA", "Other"]
+export const items_diet = ["Veg", "Non-veg"]
+export const items_brands = ["Grain Zero", "Pedigree", "Smart Heart", "Whiskas", "Meo", "Purepet", "Drools", "Chappi", "Sense", "Royal Canin", "Maxi", "Other"]
 
 function Filter() {
     ///// checked list is maintained in order to find out which all filters are been selected by the user 
@@ -598,83 +598,77 @@ function ProductCard(props) {
 
                 // initially setting 0th product to be displayed whicle clicking on the product
 
-                <div className="w-full aspect-[3/5] sm:aspect-[3/4] bg-white flex flex-col rounded-2xl 
+                <div className="w-full bg-white flex flex-col rounded-2xl 
     shadow-md hover:shadow-xl transition-all duration-300 
     border border-blue-100 cursor-pointer overflow-hidden">
 
-                    {/* Banner */}
-                    <div className="bg-blue-50 text-blue-700 flex-[0.5] w-full rounded-t-2xl px-2 
-        text-[10px] sm:text-[clamp(13px,1.2vw,16px)] font-medium tracking-wide flex items-center">
-                        Extra <span className="font-semibold mx-1">5%</span> off, use code
-                        <span className="font-semibold ml-1">MPSCH</span>
-                    </div>
-
-                    {/* Image */}
-                    <div className="flex-[3] w-full bg-blue-50 flex items-center justify-center overflow-hidden">
+                    {/* Section 1 — Image */}
+                    <div className="w-full bg-blue-50 flex items-center justify-center overflow-hidden h-[140px] sm:h-[200px] flex-shrink-0">
                         <img
-                            className="h-[85%] w-[85%] object-contain 
-                transition-transform duration-300 ease-in-out hover:scale-110"
+                            className="w-full h-full object-contain p-2
+            transition-transform duration-300 ease-in-out hover:scale-110"
                             src={`${props.imagesArray[imgCounter]}`}
                             alt={`${props?.productName}`}
                         />
                     </div>
 
-                    {/* Content */}
-                    <div className="flex flex-col gap-1 w-full px-2 py-1 flex-[3] justify-evenly overflow-hidden">
+                    {/* Section 2 — Content (name + price) */}
+                    <div className="w-full px-2 pt-2 pb-1 flex flex-col gap-1 flex-shrink-0">
 
-                        {/* Product Name */}
-                        <div className="line-clamp-2 text-[11px] sm:text-[clamp(13px,1.5vw,17px)] font-semibold text-gray-800">
+                        {/* Name — always 2 lines */}
+                        <div className="line-clamp-2 text-[11px] sm:text-[clamp(13px,1.5vw,17px)] font-semibold text-gray-800"
+                            style={{ minHeight: '2.6em' }}>
                             {props.productName}
                         </div>
 
                         {/* Price */}
                         <div className="font-sans text-gray-800">
-                            <div>
-                                <span className="text-[12px] sm:text-[clamp(14px,1.8vw,20px)] text-blue-700 font-semibold">
-                                    &#8377;{discountCalc(props.originalPriceArray[imgCounter], props.discountArray[imgCounter])}
+                            <span className="text-[12px] sm:text-[clamp(14px,1.8vw,20px)] text-blue-700 font-semibold">
+                                &#8377;{discountCalc(props.originalPriceArray[imgCounter], props.discountArray[imgCounter])}
+                            </span>
+                            <span className="text-[10px] sm:text-[clamp(13px,1.2vw,16px)] text-blue-500 ml-1">
+                                (&#8377;{gramAmountCalc(
+                                    props.originalPriceArray[imgCounter],
+                                    props.discountArray[imgCounter],
+                                    props.netWeightArray[imgCounter]
+                                )}/100g)
+                            </span>
+                            <p className="text-gray-500 mt-0.5">
+                                <span className="line-through text-[10px] sm:text-[clamp(13px,1.2vw,16px)]">
+                                    &#8377;{props.originalPriceArray[imgCounter]}
                                 </span>
-                                <span className="text-[10px] sm:text-[clamp(13px,1.2vw,16px)] text-blue-500 ml-1">
-                                    (&#8377;{gramAmountCalc(
-                                        props.originalPriceArray[imgCounter],
-                                        props.discountArray[imgCounter],
-                                        props.netWeightArray[imgCounter]
-                                    )}/100g)
+                                <span className="text-[10px] sm:text-[clamp(13px,1.2vw,16px)] text-blue-600 ml-1 font-medium">
+                                    {props.discountArray[imgCounter]}% off
                                 </span>
-                                <p className="text-gray-500">
-                                    <span className="line-through text-[10px] sm:text-[clamp(13px,1.2vw,16px)]">
-                                        &#8377;{props.originalPriceArray[imgCounter]}
-                                    </span>
-                                    <span className="text-[10px] sm:text-[clamp(13px,1.2vw,16px)] text-blue-600 ml-1 font-medium">
-                                        {props.discountArray[imgCounter]}% off
-                                    </span>
-                                </p>
-                            </div>
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Section 3 — Bottom (weights + heart/delete) */}
+                    <div className="flex justify-between items-center gap-1 px-2 py-1.5 flex-shrink-0">
+                        <div className="flex gap-1 font-sans text-[10px] sm:text-[clamp(13px,1.2vw,16px)] overflow-auto pb-1 min-w-0 flex-1 scrollbar-hide">
+                            {props.netWeightArray.map((offer, index) => (
+                                <div
+                                    key={index}
+                                    className={`flex-shrink-0 border px-1.5 py-0.5 rounded-full font-semibold cursor-pointer 
+                        transition-all duration-200
+                        ${imgCounter === index
+                                            ? "border-blue-600 bg-blue-600 text-white"
+                                            : "border-blue-300 text-blue-700 hover:bg-blue-100"
+                                        }`}
+                                    onClick={(e) => {
+                                        setImgCounter(index);
+                                        dispatch(setImageCounter(index));
+                                        e.stopPropagation();
+                                        e.preventDefault();
+                                    }}
+                                >
+                                    {props.netWeightArray[index]}kg
+                                </div>
+                            ))}
                         </div>
 
-                        {/* Bottom */}
-                        <div className="flex justify-between items-center">
-                            <div className="flex gap-1 font-sans text-[10px] sm:text-[clamp(13px,1.2vw,16px)] flex-wrap">
-                                {props.netWeightArray.map((offer, index) => (
-                                    <div
-                                        key={index}
-                                        className={`border px-1.5 py-0.5 rounded-full font-semibold cursor-pointer 
-                            transition-all duration-200
-                            ${imgCounter === index
-                                                ? "border-blue-600 bg-blue-600 text-white"
-                                                : "border-blue-300 text-blue-700 hover:bg-blue-100"
-                                            }`}
-                                        onClick={(e) => {
-                                            setImgCounter(index);
-                                            dispatch(setImageCounter(index));
-                                            e.stopPropagation();
-                                            e.preventDefault();
-                                        }}
-                                    >
-                                        {props.netWeightArray[index]}kg
-                                    </div>
-                                ))}
-                            </div>
-
+                        <div className="flex-shrink-0">
                             {userData?.role === "admin" && (
                                 <div onClick={(e) => deleteProduct(e)} className="p-1 cursor-pointer rounded-full hover:bg-red-100 transition-colors">
                                     <MdOutlineDeleteOutline size={16} className="text-red-600" />
@@ -702,7 +696,8 @@ function DisplayProducts(props) {
     const { productData, hasMore, loading } = useGetAllProduct(props?.refresh, props?.query, page, setPage);
 
     function productClicked(product) {
-        dispatch(setCompleteProductInfo(product))
+        dispatch(setBrandName(product?.brand))
+        dispatch(setProductId(product?._id))
         navigate("/Product_Page/SingleProductDisplay", { state: product._id })
     }
 

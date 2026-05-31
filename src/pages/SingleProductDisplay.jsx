@@ -41,7 +41,7 @@ function OfferComponent(props) {
                 <div
                     className="font-sans sm:text-lg lg:text-xl font-semibold text-blue-900 border-b border-blue-200/60 pb-1 mb-2 flex flex-row justify-center items-center w-full"
                 >
-                    <span>{props.netQuantity} Kg</span>
+                    <span>{props.netWeight} Kg</span>
                 </div>
 
                 {/* Pricing */}
@@ -62,7 +62,7 @@ function OfferComponent(props) {
 
                     <div className="font-sans sm:text-sm text-slate-700 flex flex-row items-center gap-2">
                         <span>
-                            ( &#8377;{gramAmountCalc(props.originalPrice, props.discount, props.netQuantity)}/100g )
+                            ( &#8377;{gramAmountCalc(props.originalPrice, props.discount, props.netWeight)}/100g )
                         </span>
 
                         <span
@@ -90,9 +90,11 @@ function ProductInfo(props) {
     // const originalPriceArray = ["200", "300", "400", "500", "600"];
     // const discountArray = ["10", "5", "15", "20", "10"]
 
-    const netQuantityArray = props.netQuantityArray
+    const netWeightArray = props.netWeightArray
+    console.log("Net weight",props?.netWeightArray)
     const originalPriceArray = props.originalPriceArray;
     const discountValueArray = props.discountValueArray
+    const productName=props?.productName
 
     const userId = useSelector((state) => state?.user?.userData?._id)
     const productVariation = useSelector((state) => state?.active?.imgCounter)
@@ -109,17 +111,16 @@ function ProductInfo(props) {
                   font-medium text-slate-800
                   leading-relaxed tracking-wide">
                 <span>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem quaerat
-                    molestias, non quo neque iure quia sequi! Recusandae, tempora possimus!
+                    {productName + " "+ netWeightArray[productVariation] + "KG"}
                 </span>
             </div>
 
             {/* Offers */}
             <div className="flex flex-row gap-4 w-full overflow-x-auto scrollbar-hide p-2 rounded-2xl">
-                {netQuantityArray?.map((offer, index) => (
+                {netWeightArray?.map((offer, index) => (
                     <OfferComponent
                         index={index}
-                        netQuantity={netQuantityArray[index]}
+                        netWeight={netWeightArray[index]}
                         originalPrice={originalPriceArray[index]}
                         discount={discountValueArray[index]}
                     />
@@ -160,7 +161,7 @@ function ProductInfo(props) {
                             </div>
                             <div className="text-sm mt-1 text-slate-700 leading-relaxed">
                                 
-                                {isNaN(item?.value) ? item.value:item.value*props?.netQuantityArray[productVariation] +" "+(item.unit || "")}
+                                {isNaN(item?.value) ? item.value:item.value*props?.netWeightArray[productVariation] +" "+(item.unit || "")}
                             </div>
                         </div>
                     ))}
@@ -198,29 +199,8 @@ function ProductImg({ imagesArray = [], productHeight }) {
     );
 }
 
-
-function ManufacturerDetails() {
-    return (
-        <div>
-            Manufacturer
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus doloremque et cum nesciunt ad minima! Harum enim iure beatae? Modi necessitatibus facere ea, accusamus qui laborum enim similique temporibus cumque doloribus quam cum, alias a aliquid quasi. Illum, aut nihil voluptates autem perferendis quisquam tenetur mollitia recusandae deserunt esse in doloremque quam dolorem vel ipsum optio incidunt soluta repudiandae harum voluptatum? Molestias, eaque veniam! Alias esse tenetur libero accusantium nihil. Ducimus ex dolores suscipit modi magni minima, provident animi, numquam nobis voluptate, rerum sapiente error fugit delectus possimus optio praesentium consequatur commodi? Ipsam minima nemo similique dolores quo, ducimus quidem.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi deserunt sunt similique earum quas itaque quam, provident voluptas delectus quaerat exercitationem fuga nihil, minima libero quisquam cupiditate aperiam quae expedita, quasi ullam. Dignissimos sapiente fugit architecto dolorem, iure hic aliquam praesentium delectus porro accusantium, commodi id eaque, vel nam fuga veniam. Ut mollitia possimus deleniti unde quae dolores! Repudiandae eaque maxime animi eligendi, nisi illum dicta suscipit labore veniam! Iusto pariatur magnam optio maxime, aperiam ipsum et cumque, quidem impedit quia provident sint odit ea tempore cum, aspernatur itaque sit tenetur similique illo eius corrupti facere saepe nisi! Laudantium culpa, animi neque velit voluptatum accusamus error ipsum tenetur, repellendus praesentium nihil. Quasi sequi incidunt, error deleniti reprehenderit odit reiciendis minus, quisquam eaque odio dolorum a, recusandae voluptatum modi possimus accusamus. Blanditiis ipsa exercitationem beatae nesciunt, et tempora recusandae at quam, eveniet voluptatibus minus magnam iusto in deleniti. Exercitationem sunt explicabo cupiditate omnis corporis rem dolor animi sed ex aut, suscipit iste saepe nihil laborum maiores porro itaque optio numquam sint illum repellat quaerat delectus. Inventore, illo. Deserunt deleniti, natus modi distinctio, commodi ex fuga voluptatum tempore unde quam iure eaque aliquid. Praesentium nobis, rerum harum at tenetur neque quo amet!
-        </div>
-    )
-}
-
-function ProductDesc() {
-    return (
-        <div>
-            Product
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus doloremque et cum nesciunt ad minima! Harum enim iure beatae? Modi necessitatibus facere ea, accusamus qui laborum enim similique temporibus cumque doloribus quam cum, alias a aliquid quasi. Illum, aut nihil voluptates autem perferendis quisquam tenetur mollitia recusandae deserunt esse in doloremque quam dolorem vel ipsum optio incidunt soluta repudiandae harum voluptatum? Molestias, eaque veniam! Alias esse tenetur libero accusantium nihil. Ducimus ex dolores suscipit modi magni minima, provident animi, numquam nobis voluptate, rerum sapiente error fugit delectus possimus optio praesentium consequatur commodi? Ipsam minima nemo similique dolores quo, ducimus quidem.
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim suscipit fuga laborum rem, adipisci cupiditate natus ullam dolorem officia ea omnis similique consectetur consequuntur quam. Architecto culpa ipsa quos facilis nostrum, fugit labore quam, excepturi iste ipsam maxime voluptatum asperiores modi sed voluptas sunt vel temporibus laborum. Nobis quo eaque eius iste in cum commodi eveniet nulla corporis, eum odit suscipit ut modi! Labore aliquam nemo reiciendis repellendus accusantium magni modi debitis, voluptas culpa adipisci cupiditate ea, numquam, quasi fugit. Est perspiciatis animi eaque similique dolore ex iste libero earum veritatis pariatur ad voluptas facilis, explicabo aperiam. Reprehenderit quam, odit consequuntur eaque fuga, accusamus alias recusandae sint porro velit atque? Porro exercitationem neque vitae expedita maxime? Vero illum dolore laboriosam natus sint, consequatur esse accusamus cumque quo accusantium unde aspernatur nam facilis itaque quia aliquid cupiditate tenetur sapiente! Dolorum enim, provident consequuntur consequatur reprehenderit quibusdam eos excepturi commodi ratione perferendis rem itaque odio nulla cumque dignissimos labore voluptatem pariatur recusandae hic, soluta eligendi adipisci quo fugit corrupti. Explicabo earum, non quis similique sequi, voluptatum inventore dolores hic nihil officia natus modi et vel. Quis rem laboriosam fuga ipsa. Similique amet eligendi fuga quod illo vitae eos sunt accusamus. Dolores, at!
-        </div>
-    )
-}
-
-function SecondaryDetails() {
-    const [detailsCounter, setDetailsCounter] = useState(0);
+function SecondaryDetails(props) {
+    const [detailsCounter, setDetailsCounter] = useState(false);
 
     return (
         <>
@@ -247,7 +227,7 @@ function SecondaryDetails() {
                                 ? "bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-[0_10px_30px_rgba(37,99,235,0.45)]"
                                 : "bg-blue-100/70 text-blue-900 hover:bg-blue-200"
                             }`}
-                        onClick={() => setDetailsCounter(0)}
+                        onClick={() => setDetailsCounter(false)}
                     >
                         Product Description
                     </div>
@@ -263,7 +243,7 @@ function SecondaryDetails() {
                                 ? "bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-[0_10px_30px_rgba(37,99,235,0.45)]"
                                 : "bg-blue-100/70 text-blue-900 hover:bg-blue-200"
                             }`}
-                        onClick={() => setDetailsCounter(1)}
+                        onClick={() => setDetailsCounter(true)}
                     >
                         Manufacturer Details
                     </div>
@@ -271,8 +251,17 @@ function SecondaryDetails() {
 
                 {/* Content */}
                 <div className="px-4 pt-2">
-                    {detailsCounter && <ManufacturerDetails />}
-                    {!detailsCounter && <ProductDesc />}
+                    
+                    {detailsCounter && 
+                        <div>
+                            {props?.manufactureDetails}
+                        </div>
+                    }
+                    {!detailsCounter && 
+                        <div>
+                            {props?.productDetails}
+                        </div>
+                    }
                 </div>
 
             </div>
@@ -288,6 +277,7 @@ export default function SingleProductDisplay() {
 
     /// this is the point from where i am fetching the product data via custom hook
     const productId = location?.state;
+    
     const productData=useGetProductData(productId);
 
     const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 640);
@@ -311,11 +301,13 @@ export default function SingleProductDisplay() {
     // all the infomation will be stored in the product slice and then from there this information will be used further
     // const imagesArray = ["pedigree.jpg", "photo_21.jpg", "smartheart.jpg", "whiskas_product.jpg", "whiskas.jpg"]
 
-    if (!productData) {
+    if (!productData || Object.keys(productData).length===0) {
         return (
             <div>Loading...</div>
         )
     }
+
+    console.log("Holaaa",productData)
 
     return (
         <>
@@ -346,17 +338,18 @@ export default function SingleProductDisplay() {
                     transition-all duration-500 h-fit"
                 >
                     <ProductInfo
-                        netQuantityArray={productData.netWeight}
+                        netWeightArray={productData.netWeight}
                         originalPriceArray={productData.originalPrice}
                         discountValueArray={productData.discountValue}
                         productId={productData._id}
                         brand={productData.brand}
                         overview={productData.overview}
+                        productName={productData?.productName}
                     />
                 </div>
             </div>
 
-            <SecondaryDetails />
+            <SecondaryDetails manufactureDetails={productData?.manufactureDetails} productDetails={productData?.productDetails}/>
             <Footer />
         </>
     )

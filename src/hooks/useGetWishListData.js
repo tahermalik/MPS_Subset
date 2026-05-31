@@ -23,7 +23,6 @@ export default function useGetWishListData(userId, refresh) {
 
                 // simply fetch from the redux
                 if (wishList_result?.data?.comment === "GUEST") {
-                    return;
 
                 } else {  // data will come from redis if it is a hit otherwise from DB and populate redis
                     wishListData = wishList_result?.data?.wishListData
@@ -47,6 +46,8 @@ export default function useGetWishListData(userId, refresh) {
                 }
                 setProductData(result?.data?.productData)
                 setProductVaraitionData(productVariationArray)
+
+                // console.log("product Data",result?.data?.productData)
 
             } catch (error) {
                 console.log("error in custom hook wishList", error)

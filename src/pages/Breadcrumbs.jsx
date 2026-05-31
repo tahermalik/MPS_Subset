@@ -15,9 +15,10 @@ export function Breadcrumbs() {
     // to set the product name
     
     
-    const product=useSelector((state)=>state?.product?.completeProductInfo)
+    const productBrandName=useSelector((state)=>state?.product?.productBrandName)
+    const productId=useSelector((state)=>state?.product?.productId)
     for(let i=0;i<pathArray.length;i++) {
-        if(pathArray[i]==="SingleProductDisplay") pathArray[i]=product?.cleanProductName
+        if(pathArray[i]==="SingleProductDisplay") pathArray[i]=productBrandName
     }
 
     function itemClicked(e,index,pathArray){
@@ -32,7 +33,7 @@ export function Breadcrumbs() {
                 // console.log(index, requestedPath,"   Taher")
                 if(pathArray[index]==="Wish_List") navigate(`/${requestedPath}${pathArray[index]}`, { state: { userId: userId } })
                 else if(pathArray[index]==="Cart") navigate(`/${requestedPath}${pathArray[index]}`, { state: { userId: userId } })
-                else if(pathArray[index]===product?.cleanProductName) navigate(`/${requestedPath}SingleProductDisplay`, { state:product?._id  })
+                else if(pathArray[index]===productBrandName) navigate(`/${requestedPath}SingleProductDisplay`, { state:productId  })
                 else navigate(`/${requestedPath}${pathArray[index]}`)
             }
         }catch(error){

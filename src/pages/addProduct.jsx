@@ -26,7 +26,8 @@ export default function AddProduct() {
       manufactureDate: "",
       expiryDate: "",
       description: "",
-      usp: ""
+      usp: "",
+      brand:""
     }
   )
   const optionPets = [
@@ -50,6 +51,15 @@ export default function AddProduct() {
   const [optionsType, setOptionsType] = useState([])
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
+
+
+  // if other options are selected
+  const [otherType, setOtherType] = useState(false)
+  const [otherCategory,setOtherCategory]=useState(false)
+  const [otherFlavor,setOtherFlavor]=useState(false)
+  const [otherBreed,setOtherBreed]=useState(false)
+  const [otherBrand,setOtherBrand]=useState(false)
+  
 
   const [productDetails, setProductDetails] = useState([{ key: "", value: "", unit: "" }])
 
@@ -89,20 +99,55 @@ export default function AddProduct() {
     else if (pet === "turtle") setOptionsCategory(generateOptionsFromArray(turtle))
     else setOptionsCategory(generateOptionsFromArray(hamster))
     setPath({ ...path, pet: pet, category: "", type: "" })
+    setOtherType(false)
     setOptionsType([])
+    setOtherCategory(false)
+    setOtherBrand(false)
+    setOtherBreed(false)
+    setOtherFlavor(false)
   }
 
   function handleCategorySelect(category) {
-    if (path["pet"] === "cat") setOptionsType(generateOptionsFromArray(cat, category))
-    else if (path["pet"] === "dog") setOptionsType(generateOptionsFromArray(dog, category))
-    setPath({ ...path, category: category, type: "", flavor: "", breed: "", diet: "" })
+    if(category==="Other"){
+      setOtherCategory(true)
+    }else{
+      if (path["pet"] === "cat") setOptionsType(generateOptionsFromArray(cat, category))
+      else if (path["pet"] === "dog") setOptionsType(generateOptionsFromArray(dog, category))
+      setPath({ ...path, category: category, type: "", flavor: "", breed: "", diet: "" })
+      setOtherType(false)
+      setOtherBrand(false)
+      setOtherBreed(false)
+      setOtherFlavor(false)
+    }
   }
 
-  function handleTypeSelect(type) { setPath({ ...path, type: type }) }
-  function handleFlavorSelect(flavor) { setPath({ ...path, flavor: flavor }) }
-  function handleBreedSelect(breed) { setPath({ ...path, breed: breed }) }
+  function handleTypeSelect(type) {
+    if (type === "Other") {
+      setOtherType(true)
+
+    } else setPath({ ...path, type: type })
+
+    setOtherBrand(false)
+    setOtherBreed(false)
+    setOtherFlavor(false)
+  }
+  function handleFlavorSelect(flavor) {
+    if(flavor==="Other"){
+      setOtherFlavor(true)
+    }else setPath({ ...path, flavor: flavor }) 
+    setOtherBrand(false)
+    setOtherBreed(false)
+  }
+  function handleBreedSelect(breed) { 
+    if(breed==="Other"){setOtherBreed(true)}
+    else setPath({ ...path, breed: breed }) 
+    setOtherBrand(false)
+  }
   function handleDietSelect(diet) { setPath({ ...path, diet: diet }) }
-  function handleBrandSelect(brand) { setPath({ ...path, brand: brand }) }
+  
+  function handleBrandSelect(brand) { 
+    if(brand==="Other"){setOtherBrand(true)}
+    else setPath({ ...path, brand: brand }) }
   function handleDiscountType(discountType) { setPath({ ...path, discountType: discountType }) }
 
   function handleReset() {
@@ -117,6 +162,11 @@ export default function AddProduct() {
     setProductDetails([{ key: "", value: "", unit: "" }])
     setImage(null)
     setPreview(null)
+    setOtherType(false)
+    setOtherCategory(false)
+    setOtherFlavor(false)
+    setOtherBreed(false)
+    setOtherBrand(false)
   }
 
   async function handleSubmit(e) {
@@ -182,27 +232,80 @@ export default function AddProduct() {
 
         <form className="space-y-4" onSubmit={handleSubmit}>
           <Select options={options} onChange={(e) => handlePetSelect(e.label)} placeholder="Select Pet" styles={customStyles} value={options.find(o => o.value === path.pet) || null} required />
-          <Select options={optionsCategory} onChange={(e) => handleCategorySelect(e.label)} placeholder="Select Product Category" styles={customStyles} value={optionsCategory?.find(o => o.value === path.category) || null} required />
+          {!otherCategory &&
+            <Select options={optionsCategory} onChange={(e) => handleCategorySelect(e.label)} placeholder="Select Product Category" styles={customStyles} value={optionsCategory?.find(o => o.value === path.category) || null} required />
+          }
+          {otherCategory &&
+            <input
+                type="text"
+                placeholder="Enter custom category"
+                value={path.category}
+                onChange={(e) => setPath({ ...path, category: e.target.value })}
+                className="border border-[#60a5fa] rounded-2xl bg-[#eff6ff] py-2 px-4 w-full focus:outline-none"
+              />
+          }
 
-          {(path["pet"] === "cat" || path["pet"] === "dog") &&
+          {(path["pet"] === "cat" || path["pet"] === "dog") && (!otherType) &&
             <Select options={optionsType} onChange={(e) => handleTypeSelect(e.label)} placeholder="Select Product Type" styles={customStyles} value={optionsType?.find(o => o.value === path.type) || null} required />
           }
 
-          {(path["pet"] === "cat" || path["pet"] === "dog") && (path["category"] === "treats" || path["category"] === "dog food" || path["category"] === "cat food") &&
-            <Select options={optionsFlavor} onChange={(e) => handleFlavorSelect(e.label)} placeholder="Select Product Flavor" styles={customStyles} value={optionsFlavor?.find(o => o.value === path.flavor) || null} required />
+          {(path["pet"] === "cat" || path["pet"] === "dog") && (otherType) &&
+            <input
+              type="text"
+              placeholder="Enter custom type"
+              value={path.type}
+              onChange={(e) => setPath({ ...path, type: e.target.value })}
+              className="border border-[#60a5fa] rounded-2xl bg-[#eff6ff] py-2 px-4 w-full focus:outline-none"
+            />
           }
 
-          {(path["pet"] === "cat" || path["pet"] === "dog") &&
+          {(path["pet"] === "cat" || path["pet"] === "dog") && (path["category"] === "treats" || path["category"] === "dog food" || path["category"] === "cat food") && (!otherFlavor) &&
+            <div data-lenis-prevent>
+              <Select options={optionsFlavor} onChange={(e) => handleFlavorSelect(e.label)} placeholder="Select Product Flavor" styles={customStyles} value={optionsFlavor?.find(o => o.value === path.flavor) || null} required />
+            </div>
+          }
+          {(path["pet"] === "cat" || path["pet"] === "dog") && (path["category"] === "treats" ||    path["category"] === "dog food" || path["category"] === "cat food") && (otherFlavor) &&
+            <input
+              type="text"
+              placeholder="Enter custom Flavor"
+              value={path.flavor}
+              onChange={(e) => setPath({ ...path, flavor: e.target.value })}
+              className="border border-[#60a5fa] rounded-2xl bg-[#eff6ff] py-2 px-4 w-full focus:outline-none"
+            />
+          }
+
+          {(path["pet"] === "dog") && (!otherBreed) &&
             <Select options={optionsBreed} onChange={(e) => handleBreedSelect(e.label)} placeholder="Select Breed" styles={customStyles} value={optionsBreed?.find(o => o.value === path.breed) || null} required />
           }
+          {(path["pet"] === "dog") && (otherBreed) &&
+            <input
+              type="text"
+              placeholder="Enter custom Breed"
+              value={path.breed}
+              onChange={(e) => setPath({ ...path, breed: e.target.value })}
+              className="border border-[#60a5fa] rounded-2xl bg-[#eff6ff] py-2 px-4 w-full focus:outline-none"
+            />
 
-          {(path["pet"] === "cat" || path["pet"] === "dog") && path["category"] == "cage" && path["category"] !== "toys" &&
+          }
+
+          {(path["pet"] === "cat" || path["pet"] === "dog") && path["category"] !== "cage" && path["category"] !== "toys" &&
             <Select options={optionsDiet} onChange={(e) => handleDietSelect(e.label)} placeholder="Select Veg/Non-Veg" styles={customStyles} value={optionsDiet?.find(o => o.value === path.diet) || null} required />
           }
-          <div data-lenis-prevent>
 
-            <Select options={optionsBrand} onChange={(e) => handleBrandSelect(e.label)} placeholder="Select Brand" styles={customStyles} value={optionsBrand?.find(o => o.value === path.brand) || null} required/>
-          </div>
+          {!otherBrand &&
+            <div data-lenis-prevent>
+              <Select options={optionsBrand} onChange={(e) => handleBrandSelect(e.label)} placeholder="Select Brand" styles={customStyles} value={optionsBrand?.find(o => o.value === path.brand) || null} required />
+            </div>
+          }
+          {otherBrand &&
+            <input
+              type="text"
+              placeholder="Enter custom Brand"
+              value={path.brand}
+              onChange={(e) => setPath({ ...path, brand: e.target.value })}
+              className="border border-[#60a5fa] rounded-2xl bg-[#eff6ff] py-2 px-4 w-full focus:outline-none"
+            />
+          }
 
           <div className="border border-blue-500 rounded-xl p-2">
             <div className="text-blue-700 mb-2 underline">Product Details</div>
