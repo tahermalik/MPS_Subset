@@ -15,27 +15,92 @@
 
     <!-- Products -->
    <url>
-        <loc>https://malik-pet-shop-main.vercel.app/product/singleProduct/6a1024c21845f261913a25d0</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://malik-pet-shop-main.vercel.app/product/singleProduct/6a102e9198c680525b788571</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://malik-pet-shop-main.vercel.app/product/singleProduct/6a10693d07f09129f5e1a759</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
         <loc>https://malik-pet-shop-main.vercel.app/product/singleProduct/6a11552b56938d95b47cf1d8</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://malik-pet-shop-main.vercel.app/product/singleProduct/6a11560656938d95b47cf1e0</loc>
+        <loc>https://malik-pet-shop-main.vercel.app/product/singleProduct/6a185fbfd76d9774674ca605</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://malik-pet-shop-main.vercel.app/product/singleProduct/6a192df30d459f2dd5198d6f</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://malik-pet-shop-main.vercel.app/product/singleProduct/6a1931390d459f2dd5198d7f</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://malik-pet-shop-main.vercel.app/product/singleProduct/6a1939470d459f2dd5198e01</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://malik-pet-shop-main.vercel.app/product/singleProduct/6a193fce0d459f2dd5198f02</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://malik-pet-shop-main.vercel.app/product/singleProduct/6a1940e10d459f2dd5198f0e</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://malik-pet-shop-main.vercel.app/product/singleProduct/6a4b7b3a41126b0687331b92</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://malik-pet-shop-main.vercel.app/product/singleProduct/6a4b7cdb41126b0687331b9f</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://malik-pet-shop-main.vercel.app/product/singleProduct/6a4b7e9541126b0687331ba9</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://malik-pet-shop-main.vercel.app/product/singleProduct/6a4b801341126b0687331bb1</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://malik-pet-shop-main.vercel.app/product/singleProduct/6a4b8949a15df2f3e5eee0cc</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://malik-pet-shop-main.vercel.app/product/singleProduct/6a4b8b07a15df2f3e5eee0d9</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://malik-pet-shop-main.vercel.app/product/singleProduct/6a4b8cfaa15df2f3e5eee0e1</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://malik-pet-shop-main.vercel.app/product/singleProduct/6a4b8ecda15df2f3e5eee0e9</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://malik-pet-shop-main.vercel.app/product/singleProduct/6a4b9050a15df2f3e5eee0ef</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://malik-pet-shop-main.vercel.app/product/singleProduct/6a4b9229a15df2f3e5eee0f8</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://malik-pet-shop-main.vercel.app/product/singleProduct/6a4b9381a15df2f3e5eee0fe</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>

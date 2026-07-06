@@ -520,8 +520,8 @@ function ProductCard(props) {
         fetchQuantity();
     }, []);
 
-    //// fetching the wishList for the user who is not logged in
-    const wishList = useSelector((state) => state?.user?.userDataNotLoggedIn?.wishList)
+    // //// fetching the wishList for the user who is not logged in
+    // const wishList = useSelector((state) => state?.user?.userDataNotLoggedIn?.wishList)
 
     async function favProduct(e) {
         try {
@@ -603,7 +603,7 @@ function ProductCard(props) {
     border border-blue-100 cursor-pointer overflow-hidden">
 
                     {/* Section 1 — Image */}
-                    <div className="w-full bg-blue-50 flex items-center justify-center overflow-hidden h-[140px] sm:h-[200px] flex-shrink-0">
+                    <div className="w-full bg-blue-50 flex items-center justify-center overflow-hidden h-[170px] sm:h-[200px] flex-shrink-0">
                         <img
                             className="w-full h-full object-contain p-2
             transition-transform duration-300 ease-in-out hover:scale-110"
@@ -616,17 +616,17 @@ function ProductCard(props) {
                     <div className="w-full px-2 pt-2 pb-1 flex flex-col gap-1 flex-shrink-0">
 
                         {/* Name — always 2 lines */}
-                        <div className="line-clamp-2 text-[11px] sm:text-[clamp(13px,1.5vw,17px)] font-semibold text-gray-800"
+                        <div className="line-clamp-2 text-[14px] sm:text-[clamp(13px,1.5vw,17px)] font-semibold text-gray-800"
                             style={{ minHeight: '2.6em' }}>
                             {props.productName}
                         </div>
 
                         {/* Price */}
                         <div className="font-sans text-gray-800">
-                            <span className="text-[12px] sm:text-[clamp(14px,1.8vw,20px)] text-blue-700 font-semibold">
+                            <span className="text-[15px] sm:text-[clamp(14px,1.8vw,20px)] text-blue-700 font-semibold">
                                 &#8377;{discountCalc(props.originalPriceArray[imgCounter], props.discountArray[imgCounter])}
                             </span>
-                            <span className="text-[10px] sm:text-[clamp(13px,1.2vw,16px)] text-blue-500 ml-1">
+                            <span className="text-[12px] sm:text-[clamp(13px,1.2vw,16px)] text-blue-500 ml-1">
                                 (&#8377;{gramAmountCalc(
                                     props.originalPriceArray[imgCounter],
                                     props.discountArray[imgCounter],
@@ -634,10 +634,10 @@ function ProductCard(props) {
                                 )}/100g)
                             </span>
                             <p className="text-gray-500 mt-0.5">
-                                <span className="line-through text-[10px] sm:text-[clamp(13px,1.2vw,16px)]">
+                                <span className="line-through text-[12px] sm:text-[clamp(13px,1.2vw,16px)]">
                                     &#8377;{props.originalPriceArray[imgCounter]}
                                 </span>
-                                <span className="text-[10px] sm:text-[clamp(13px,1.2vw,16px)] text-blue-600 ml-1 font-medium">
+                                <span className="text-[12px] sm:text-[clamp(13px,1.2vw,16px)] text-blue-600 ml-1 font-medium">
                                     {props.discountArray[imgCounter]}% off
                                 </span>
                             </p>
@@ -645,12 +645,12 @@ function ProductCard(props) {
                     </div>
 
                     {/* Section 3 — Bottom (weights + heart/delete) */}
-                    <div className="flex justify-between items-center gap-1 px-2 py-1.5 flex-shrink-0">
-                        <div className="flex gap-1 font-sans text-[10px] sm:text-[clamp(13px,1.2vw,16px)] overflow-auto pb-1 min-w-0 flex-1 scrollbar-hide">
+                    <div className="grid grid-cols-[0.9fr_0.1fr] grid-rows-1  justify-between items-center gap-1 px-2 py-1.5 flex-shrink-0">
+                        <div className="grid grid-cols-3 grid-rows-2 gap-1 max-[380px]:gap-0.5 font-sans text-[11px] max-[380px]:text-[10px] overflow-auto shrink-0">
                             {props.netWeightArray.map((offer, index) => (
                                 <div
                                     key={index}
-                                    className={`flex-shrink-0 border px-1.5 py-0.5 rounded-full font-semibold cursor-pointer 
+                                    className={`shrink-0 flex justify-center items-center border px-1.5 max-[380px]:px-1 py-0.5 rounded-full font-semibold cursor-pointer 
                         transition-all duration-200
                         ${imgCounter === index
                                             ? "border-blue-600 bg-blue-600 text-white"
@@ -788,7 +788,7 @@ export default function Product() {
             <SubMenu animal={animal} />
 
             <Breadcrumbs />
-            {/* <div className={`w-[100%] flex flex-col sm:flex-row`} style={{ height: `${productHeight}px` }}> */}
+            
             <div className={`w-[100%] flex flex-col sm:flex-row h-auto`}>
                 {/* Filter Display for Desktop */}
                 <div className="hidden sm:block

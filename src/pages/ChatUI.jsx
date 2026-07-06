@@ -56,7 +56,7 @@ export default function ChatUI(props) {
 
   return (
     <div className="h-full bg-blue-50 flex flex-col rounded-3xl">
-      <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl flex flex-col overflow-hidden h-[80vh]" data-lenis-prevent>
+      <div className="w-full bg-white rounded-3xl shadow-2xl flex flex-col overflow-hidden h-[80vh]" data-lenis-prevent>
 
         {/* Header */}
         <div className="px-6 py-4 text-blue-800 font-semibold text-lg bg-blue-100 shadow-md">
@@ -112,7 +112,7 @@ export default function ChatUI(props) {
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && sendMessage()}
             placeholder="Ask for pet food, toys, grooming…"
-            className="flex-1 px-4 py-3 rounded-xl bg-white focus:outline-none shadow-inner"
+            className="flex-1 px-4 py-3 rounded-xl bg-white focus:outline-none shadow-inner text-lg"
           />
           <button
             onClick={sendMessage}

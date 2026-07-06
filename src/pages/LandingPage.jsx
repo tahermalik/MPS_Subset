@@ -933,6 +933,8 @@ export function Header({ open, setOpen, approachedFrom }) {
             >
                 {/* Upper Header */}
                 <div className="upper_header grid grid-cols-[0.2fr_1.8fr] grid-rows-2 sm:flex sm:flex-row justify-center sm:justify-evenly items-center gap-3 py-3 w-[100vw] text-[#0A3D62]">
+
+                    {/* Left Part of the upper header */}
                     <div className="l-upper-header flex flex-row gap-2 items-center justify-center">
                         <div onClick={(e) => { e.stopPropagation(); navigate("/") }} className="hidden sm:flex justify-center items-center cursor-pointer">
                             <img
@@ -984,7 +986,7 @@ export function Header({ open, setOpen, approachedFrom }) {
                                         </div>
                                         <div className="flex flex-row items-center gap-2 pl-1">
                                             <div><FaPhoneAlt color="#054873" /></div>
-                                            <div className="text-[#054873] text-sm"><span>8369884730</span></div>
+                                            <div className="text-[#054873] text-sm"><span>9152760580</span></div>
                                         </div>
                                         {role === "admin" && <Link to="/adminSetting"><div className="hover:bg-[#DFF3FF] hover:rounded-xl px-3 py-1 cursor-pointer text-[#054873]">Admin Settings</div></Link>}
                                     </div>
@@ -1071,8 +1073,6 @@ export function Header({ open, setOpen, approachedFrom }) {
         </>
     )
 }
-
-
 
 function FeedBack(props) {
     const myRef = useRef(null);

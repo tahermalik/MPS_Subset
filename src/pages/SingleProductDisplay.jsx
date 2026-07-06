@@ -100,7 +100,7 @@ function ProductInfo(props) {
     const productVariation = useSelector((state) => state?.active?.imgCounter)
 
     // this is the way of showing products information to the end user
-    const details = props?.overview || []
+    const details=props?.overview
 
 
     return (
