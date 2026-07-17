@@ -79,7 +79,7 @@ export default function WishListUI() {
             e.stopPropagation();
             e.preventDefault();
 
-            console.log("inside remove fav btn", userId, productId)
+            console.log("inside remove fav btn", productId)
 
             dispatch(removeFavourite({productId,productVariation}))
 

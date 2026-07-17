@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { PRODUCT_ENDPOINTS, USER_ENDPOINTS } from "../pages/endpoints";
 import { useSelector, useDispatch } from "react-redux";
-import { removeMissingFromWishlist, replaceEntireWishList } from "../redux/slices/wishListSlice";
+import { removeFavourite, removeMissingFromWishlist, replaceEntireWishList, setFavourite } from "../redux/slices/wishListSlice";
 import toast from "react-hot-toast";
 import store from "../redux/store";
 import socket from "../../socket";
@@ -61,6 +61,7 @@ export default function useGetWishListData(userId, refresh) {
         socket.on("addWishList", (data) => {
             // data will be an object
             console.log("Received:", data);
+            dispatch(setFavourite({"productId":data?._id,"productVariation":data?.productVariation}))
             setProductData((prev) => [...prev, data])
             setProductVaraitionData((prev) => [...prev, data?.productVariation])
         });
@@ -71,6 +72,7 @@ export default function useGetWishListData(userId, refresh) {
             const productVariation = data?.productVariation
 
             console.log("To remove "+productId +" and "+productVariation)
+            // dispatch(removeFavourite({productId,productVariation}))
 
             setProductData(prev=>prev.filter((d,idx)=> {
                 if(d?._id.toString()===productId.toString() && d?.productVariation===productVariation){
